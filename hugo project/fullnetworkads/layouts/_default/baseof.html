@@ -2,8 +2,10 @@
 <html lang="{{ .Site.Language.Lang }}">
 <head>
     <meta name="generator" content="Hugo {{ hugo.Version }}">
-    <!-- 查找并删除或注释掉这行 -->
-    <!-- <script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script> -->
+    <!-- 删除或条件包含 livereload.js -->
+    {{ if hugo.IsServer }}
+    <script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    {{ end }}
     
     <meta charset="UTF-8">
     <!-- 其他 head 内容 -->
@@ -11,7 +13,7 @@
     <!-- 确保使用绝对路径 -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}">
-    <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+    <link rel="manifest" href="{{ "site.webmanifest" | absURL }}">
     <link rel="mask-icon" href="{{ "safari-pinned-tab.svg" | absURL }}" color="#ff4d79">
     
     <!-- 确保 Open Graph 图片使用绝对路径 -->
@@ -21,27 +23,9 @@
 </head>
 <body>
     <!-- 其他 body 内容 -->
-    
-    <!-- 确保使用绝对路径 -->
-    <!-- 注意：这是临时使用 CDN 版本的 Tailwind，未来将迁移到 PostCSS 插件版本 -->
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>
-      // 确保 tailwind 配置在 tailwind 加载后执行
-      window.tailwind = window.tailwind || {};
-      window.tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#ff4d79',
-              secondary: '#0066ff'
-            }
-          }
-        }
-      };
-    </script>
-    
-    <!-- 其他 body 内容 -->
 </body>
+</html>
+
 
 
 

@@ -16,6 +16,16 @@
 <!-- 规范链接 -->
 <link rel="canonical" href="{{ .Permalink }}">
 
+<!-- 预加载关键资源 -->
+<link rel="preload" href="{{ "images/logo.png" | absURL }}" as="image">
+<link rel="preload" href="{{ "images/hero-bg.jpg" | absURL }}" as="image">
+
+<!-- 预加载关键资源 -->
+<link rel="preload" href="{{ "images/logo.png" | absURL }}" as="image">
+<link rel="preload" href="{{ "images/hero-bg.jpg" | absURL }}" as="image">
+
+
+
 <!-- 多语言支持 -->
 {{ range .Translations }}
 <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
