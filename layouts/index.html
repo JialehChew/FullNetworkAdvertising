@@ -1,0 +1,50 @@
+{{ define "main" }}
+  <!-- 添加重定向脚本，但保留原始内容 -->
+  <script>
+    // 只在根路径时执行重定向
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+      // 获取本地存储中的语言偏好
+      var storedLang = localStorage.getItem('preferredLanguage');
+      
+      // 如果有存储的语言偏好，则重定向
+      if (storedLang && ['zh', 'en', 'ms'].indexOf(storedLang) !== -1) {
+        window.location.href = '/' + storedLang + '/';
+      } else {
+        // 否则重定向到默认语言（中文）
+        window.location.href = '/zh/';
+      }
+    }
+  </script>
+
+  <!-- Hero 区域 - 保持原样 -->
+  <section class="hero-section pt-24 pb-16 min-h-[600px] flex items-center">
+    <div class="container mx-auto px-4 w-full">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">{{ i18n "heroTitle" }}</h1>
+        <p class="text-lg text-gray-600 mb-8">{{ i18n "heroDescription" }}</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-button hover:bg-opacity-90 transition">{{ i18n "contactUs" }}</a>
+          <a href="#services" class="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-button hover:bg-gray-50 transition">{{ i18n "ourServices" }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 其余内容保持不变 -->
+  {{ partial "about.html" . }}
+  {{ partial "services.html" . }}
+  {{ partial "contact.html" . }}
+{{ end }}
+
+{{ define "header" }}
+  {{ partial "header.html" . }}
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}
+
+{{ define "scripts" }}
+  {{ partial "scripts.html" . }}
+{{ end }}
+

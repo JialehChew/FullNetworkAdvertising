@@ -1,0 +1,97 @@
+<!-- Hero 区域 -->
+<section class="hero-section pt-24 pb-16 min-h-[600px] flex items-center">
+  <div class="container mx-auto px-4 w-full">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 hero-text" lang="zh">全方位网络营销解决方案｜马来西亚广告与数字营销专家</h1>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 hero-text" lang="en">Comprehensive Digital Marketing Solutions | Advertising Agency in Malaysia</h1>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 hero-text" lang="ms">Penyelesaian Pemasaran Digital Komprehensif | Agensi Pengiklanan Malaysia</h1>
+      
+      <p class="text-lg text-gray-700 mb-8 hero-text" lang="zh">我们是总部位于马来西亚雪兰莪Klang的专业广告公司，专注提供数字营销与线上推广服务。我们为中小企业量身打造涵盖社交媒体管理、搜索引擎优化（SEO）、广告投放与内容创作的整合营销方案，助力品牌在马来西亚市场中脱颖而出。</p>
+      <p class="text-lg text-gray-700 mb-8 hero-text" lang="en">We are a trusted <strong>digital marketing and advertising agency</strong> based in Klang, Selangor, Malaysia. Our team provides tailored solutions for SMEs, including social media marketing, SEO Malaysia services, content creation, and strategic online advertising campaigns to help your brand grow and thrive in the competitive digital landscape.</p>
+      <p class="text-lg text-gray-700 mb-8 hero-text" lang="ms">Kami adalah <strong>agensi pengiklanan digital yang dipercayai</strong> yang berpangkalan di Klang, Selangor, Malaysia. Kami menyediakan penyelesaian disesuaikan untuk PKS, termasuk pemasaran media sosial, perkhidmatan SEO Malaysia, penciptaan kandungan, dan kempen pengiklanan digital yang strategik untuk membantu jenama anda berkembang di pasaran digital yang kompetitif.</p>
+      
+      <div class="flex flex-wrap gap-4">
+        <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-[16px] hover:bg-opacity-90 transition" lang="zh">免费咨询</a>
+        <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-[16px] hover:bg-opacity-90 transition" lang="en">Free Consultation</a>
+        <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-[16px] hover:bg-opacity-90 transition" lang="ms">Perundingan Percuma</a>
+      </div>
+
+      <div class="flex justify-between items-center mt-8 mb-12 max-w-lg">
+        <div class="text-center">
+          <div class="text-blue-600 text-3xl md:text-4xl font-bold mb-1">
+            <span id="client-counter">500</span>+
+          </div>
+          <p class="stats-text" lang="zh">满意客户</p>
+          <p class="stats-text" lang="en">Happy Clients</p>
+          <p class="stats-text" lang="ms">Pelanggan Gembira</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="text-indigo-600 text-3xl md:text-4xl font-bold mb-1">
+            <span id="roi-counter">3.5</span>x
+          </div>
+          <p class="stats-text" lang="zh">投资回报率提升</p>
+          <p class="stats-text" lang="en">ROI Boost</p>
+          <p class="stats-text" lang="ms">Peningkatan ROI</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="text-purple-600 text-3xl md:text-4xl font-bold mb-1">
+            <span id="satisfaction-counter">99</span>%
+          </div>
+          <p class="stats-text" lang="zh">客户满意度</p>
+          <p class="stats-text" lang="en">Satisfaction Rate</p>
+          <p class="stats-text" lang="ms">Kadar Kepuasan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 内联脚本确保计数器动画正常工作 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 计数器动画函数
+      function animateValue(id, start, end, duration) {
+        const obj = document.getElementById(id);
+        if (!obj) return;
+        
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const isDecimal = end % 1 !== 0;
+          const value = progress * (end - start) + start;
+          
+          obj.innerHTML = isDecimal ? value.toFixed(1) : Math.floor(value);
+          
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            obj.innerHTML = isDecimal ? end.toFixed(1) : end;
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+      
+      // 启动所有计数器动画
+      animateValue("client-counter", 0, 500, 2000);
+      animateValue("roi-counter", 0, 3.5, 2000);
+      animateValue("satisfaction-counter", 0, 99, 2000);
+    });
+  </script>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

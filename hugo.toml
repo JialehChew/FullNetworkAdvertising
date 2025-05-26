@@ -1,0 +1,51 @@
+baseURL = 'https://www.fullnetworkads.com/'
+title = 'Full Network Advertising - 全方位网络营销解决方案'
+defaultContentLanguage = 'zh'
+
+[languages]
+  [languages.zh]
+    languageName = '中文'
+    weight = 1
+    title = 'Full Network Advertising - 全方位网络营销解决方案'
+    description = '全方位网络营销解决方案，帮助您的企业在数字时代脱颖而出。我们提供社交媒体管理、搜索引擎优化、广告投放和内容创作等服务。'
+  [languages.en]
+    languageName = 'English'
+    weight = 2
+    title = 'Full Network Advertising - Comprehensive Digital Marketing Solutions'
+    description = 'Comprehensive digital marketing solutions to help your business stand out in the digital age. We offer social media management, SEO, advertising, and content creation services.'
+  [languages.ms]
+    languageName = 'Melayu'
+    weight = 3
+    title = 'Full Network Advertising - Penyelesaian Pemasaran Digital Komprehensif'
+    description = 'Penyelesaian pemasaran digital komprehensif untuk membantu perniagaan anda menonjol dalam era digital. Kami menawarkan pengurusan media sosial, SEO, pengiklanan, dan perkhidmatan penciptaan kandungan.'
+
+[params]
+  logo = '/images/logo.png'
+  description = '全方位网络营销解决方案，帮助您的企业在数字时代脱颖而出'
+  email = 'fullnetwork63@gmail.com'
+  phone = '+60 14-663 2896'
+  address = '83-2, Jalan Mahogani 5/KS7, Bandar Botanic, 41200, Klang, Selangor, Malaysia'
+  
+  # 社交媒体链接
+  [params.social]
+    facebook = 'https://www.facebook.com/Fullnetwork28/'
+    instagram = 'https://www.instagram.com/fullnetwork28/'
+    whatsapp = 'https://wa.me/60146632896'
+    telegram = 'https://t.me/fullnetwork28'
+
+  # 社交媒体分享设置
+  [params.social_share]
+    title = "Full Network Advertising - 全方位网络营销解决方案"
+    description = "马来西亚领先的数字营销公司，专注于社交媒体营销、SEO优化、品牌策划和内容创作"
+    twitter_username = "fullnetwork28"
+    facebook_app_id = "" # 如果有Facebook应用ID，请填写
+
+[build]
+  writeStats = true
+
+
+
+
+
+
+

@@ -1,0 +1,196 @@
+<script>
+// 增强的事件跟踪系统
+(function() {
+  // 只在生产环境中运行
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
+  
+  // 创建本地事件存储
+  const eventStorage = {
+    events: [],
+    maxEvents: 100,
+    
+    // 添加事件到存储
+    add: function(category, action, label, value) {
+      // 限制存储大小
+      if (this.events.length >= this.maxEvents) {
+        this.events.shift();
+      }
+      
+      // 添加新事件
+      this.events.push({
+        category: category,
+        action: action,
+        label: label,
+        value: value,
+        timestamp: new Date().toISOString(),
+        url: window.location.href,
+        referrer: document.referrer || ''
+      });
+      
+      // 保存到本地存储
+      try {
+        localStorage.setItem('user-events', JSON.stringify(this.events));
+      } catch (e) {
+        console.error('Failed to store event:', e);
+      }
+      
+      // 记录到控制台
+      console.log('Event tracked:', { category, action, label, value });
+    },
+    
+    // 获取所有事件
+    getAll: function() {
+      return this.events;
+    },
+    
+    // 清除所有事件
+    clear: function() {
+      this.events = [];
+      localStorage.removeItem('user-events');
+    },
+    
+    // 从本地存储加载事件
+    load: function() {
+      try {
+        const stored = localStorage.getItem('user-events');
+        if (stored) {
+          this.events = JSON.parse(stored);
+        }
+      } catch (e) {
+        console.error('Failed to load stored events:', e);
+        this.events = [];
+      }
+    }
+  };
+  
+  // 初始化时加载存储的事件
+  eventStorage.load();
+  
+  // 全局事件跟踪函数
+  window.trackEvent = function(category, action, label, value) {
+    eventStorage.add(category, action, label, value);
+    
+    // 可选：发送到您自己的服务器
+    /*
+    fetch('/api/event-log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        category: category,
+        action: action,
+        label: label,
+        value: value,
+        timestamp: new Date().toISOString(),
+        url: window.location.href,
+        referrer: document.referrer || ''
+      })
+    }).catch(err => console.error('Failed to log event data:', err));
+    */
+  };
+  
+  // 页面加载完成后设置事件监听
+  document.addEventListener('DOMContentLoaded', function() {
+    // 跟踪页面访问
+    trackEvent('Page', 'View', document.title);
+    
+    // 跟踪所有外部链接点击
+    const externalLinks = document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.host + '"])');
+    externalLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        trackEvent('Outbound Link', 'Click', this.href);
+      });
+    });
+    
+    // 跟踪联系表单提交
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function() {
+        trackEvent('Contact', 'Form Submit', 'Contact Form');
+      });
+    }
+    
+    // 跟踪语言切换
+    const languageButtons = document.querySelectorAll('#language-dropdown button');
+    languageButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const language = this.textContent.trim();
+        trackEvent('Language', 'Switch', language);
+      });
+    });
+    
+    // 跟踪服务卡片点击
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+      card.addEventListener('click', function() {
+        const serviceName = this.querySelector('h4')?.textContent || 'Unknown Service';
+        trackEvent('Service', 'Card Click', serviceName);
+      });
+    });
+    
+    // 跟踪滚动深度
+    let scrollDepthMarkers = [25, 50, 75, 100];
+    let scrollDepthTracked = [];
+    
+    window.addEventListener('scroll', function() {
+      const scrollPercent = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+      
+      scrollDepthMarkers.forEach(marker => {
+        if (scrollPercent >= marker && !scrollDepthTracked.includes(marker)) {
+          scrollDepthTracked.push(marker);
+          trackEvent('Scroll Depth', 'Scroll', marker + '%');
+        }
+      });
+    }, { passive: true });
+    
+    // 跟踪停留时间
+    let startTime = Date.now();
+    let timeOnPageTracked = false;
+    
+    // 在用户离开页面时记录停留时间
+    window.addEventListener('beforeunload', function() {
+      if (!timeOnPageTracked) {
+        const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+        trackEvent('Engagement', 'Time on Page', document.title, timeOnPage);
+        timeOnPageTracked = true;
+      }
+    });
+    
+    // 跟踪复制文本
+    document.addEventListener('copy', function() {
+      const selectedText = window.getSelection().toString();
+      if (selectedText && selectedText.length > 10) {
+        trackEvent('Content', 'Copy', selectedText.substring(0, 50) + '...');
+      }
+    });
+    
+    // 跟踪视频互动（如果有视频）
+    const videos = document.querySelectorAll('video');
+    videos.forEach((video, index) => {
+      const videoId = video.id || 'video-' + index;
+      
+      video.addEventListener('play', function() {
+        trackEvent('Video', 'Play', videoId);
+      });
+      
+      video.addEventListener('pause', function() {
+        trackEvent('Video', 'Pause', videoId, Math.round(video.currentTime));
+      });
+      
+      video.addEventListener('ended', function() {
+        trackEvent('Video', 'Complete', videoId);
+      });
+    });
+  });
+  
+  // 提供一个全局函数来查看收集的事件数据
+  window.getTrackedEvents = function() {
+    return eventStorage.getAll();
+  };
+  
+  // 提供一个全局函数来清除收集的事件数据
+  window.clearTrackedEvents = function() {
+    eventStorage.clear();
+    return 'All tracked events have been cleared.';
+  };
+})();
+</script>

@@ -1,0 +1,60 @@
+# General
+heroTitle: "Comprehensive Network Marketing Solutions"
+heroDescription: "We provide professional network marketing services to help your business stand out in the digital age. From social media management to search engine optimization, our team will customize the most suitable marketing strategy for you."
+contactUs: "Contact Us"
+ourServices: "Our Services"
+home: "Home"
+aboutUs: "About Us"
+services: "Services"
+contact: "Contact"
+allRightsReserved: "All Rights Reserved"
+
+# About Us
+aboutUsTitle: "About Us"
+aboutUsSubtitle: "We are a professional team focused on network marketing, dedicated to helping businesses enhance brand awareness and market competitiveness."
+experienceTitle: "Rich Experience"
+experienceDescription: "With years of network marketing experience, we have provided successful marketing solutions to clients across various industries."
+teamTitle: "Professional Team"
+teamDescription: "Our team consists of marketing experts, content creators, and technical personnel, ensuring comprehensive services."
+supportTitle: "24/7 Support"
+supportDescription: "We provide round-the-clock customer support, ready to answer your questions and offer professional advice at any time."
+
+# Services
+servicesTitle: "Our Services"
+servicesSubtitle: "We provide comprehensive network marketing services to help your business gain more exposure and customers in the digital world."
+seoTitle: "Search Engine Optimization"
+seoDescription: "Improve your ranking in search engines by optimizing website structure and content, gaining more targeted traffic."
+socialMediaTitle: "Social Media Marketing"
+socialMediaDescription: "Establish brand image on major social platforms, increase fan interaction, and enhance brand awareness."
+emailMarketingTitle: "Email Marketing"
+emailMarketingDescription: "Design effective email marketing campaigns to connect with potential customers and improve conversion rates."
+ppcTitle: "Pay-Per-Click Advertising"
+ppcDescription: "Place precise paid advertisements on search engines and social media to quickly acquire target customers."
+contentMarketingTitle: "Content Marketing"
+contentMarketingDescription: "Create high-quality, valuable content to attract target audiences and establish industry authority."
+analyticsTitle: "Data Analytics"
+analyticsDescription: "Understand marketing effectiveness through data analysis, optimize strategies, and improve return on investment."
+
+# Contact Us
+contactTitle: "Contact Us"
+contactSubtitle: "If you have any questions or needs, please feel free to contact us, and we will reply to you as soon as possible."
+contactInfo: "Contact Information"
+address: "Address"
+email: "Email"
+phone: "Phone"
+followUs: "Follow Us"
+sendMessage: "Send Message"
+name: "Name"
+emailAddress: "Email Address"
+subject: "Subject"
+message: "Message"
+send: "Send"
+
+# Footer
+quickLinks: "Quick Links"
+
+# 404 Page
+pageNotFound: "Page Not Found"
+pageNotFoundMessage: "The page you are looking for does not exist or has been removed."
+backToHome: "Back to Home"
+

@@ -1,0 +1,39 @@
+<!-- 导航栏 -->
+<header class="bg-white shadow-sm fixed w-full z-50">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <a href="{{ .Site.BaseURL }}" class="flex items-center">
+      <img src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }} Logo" class="h-12">
+    </a>
+    <nav class="hidden md:flex space-x-8">
+      <a href="#" class="text-gray-700 hover:text-primary font-medium">{{ i18n "home" }}</a>
+      <a href="#about-us" class="text-gray-700 hover:text-primary font-medium">{{ i18n "aboutUs" }}</a>
+      <a href="#services" class="text-gray-700 hover:text-primary font-medium">{{ i18n "services" }}</a>
+      <a href="#contact" class="text-gray-700 hover:text-primary font-medium">{{ i18n "contact" }}</a>
+    </nav>
+    
+    <div class="flex items-center space-x-4">
+      <!-- 语言切换器 -->
+      <div class="relative mr-4">
+        <button id="language-button" class="flex items-center space-x-2 text-sm px-3 py-2 rounded hover:bg-gray-100 font-medium">
+          <span id="current-language">
+            {{ if eq .Site.Language.Lang "zh" }}中文{{ else if eq .Site.Language.Lang "en" }}English{{ else }}Melayu{{ end }}
+          </span>
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <div id="language-dropdown" class="hidden absolute top-full right-0 mt-1 bg-white rounded shadow-lg py-2 w-24 z-50">
+          <button onclick="changeLanguage('zh')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">中文</button>
+          <button onclick="changeLanguage('en')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">English</button>
+          <button onclick="changeLanguage('ms')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Melayu</button>
+        </div>
+      </div>
+      
+      <!-- 联系我们按钮 - 添加更明显的圆角样式 -->
+      <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-[16px] shadow-md hover:bg-opacity-90 transition whitespace-nowrap" lang="zh">联系我们</a>
+      <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-[16px] shadow-md hover:bg-opacity-90 transition whitespace-nowrap" lang="en">Contact Us</a>
+      <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-[16px] shadow-md hover:bg-opacity-90 transition whitespace-nowrap" lang="ms">Hubungi Kami</a>
+    </div>
+  </div>
+</header>
+
+
+

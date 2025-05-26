@@ -1,0 +1,221 @@
+/* 自定义CSS样式 */
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero-section {
+  background-image: url('/images/hero-bg.jpg') !important;
+  background-size: cover !important;
+  background-position: center right !important;
+  position: relative !important;
+}
+
+/* 添加轻微的暗色叠加层，确保文字可读性 */
+.hero-section::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(255, 77, 121, 0.1) !important; /* 保留轻微的粉色遮罩 */
+  z-index: 1 !important;
+}
+
+/* 确保内容在遮罩层上方 */
+.hero-section > .container {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Hero 文字样式保持原样 */
+.hero-text {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+  color: #222 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* 移除统计数字卡片样式 */
+.stats-card {
+  background-color: transparent;
+  padding: 10px 15px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* 调整统计文字样式 - 移除白色填充和黑色轮廓 */
+.stats-text {
+  color: #333 !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  text-shadow: none !important;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* 多语言显示控制 */
+body.lang-zh [lang="en"],
+body.lang-zh [lang="ms"] {
+  display: none;
+}
+
+body.lang-en [lang="zh"],
+body.lang-en [lang="ms"] {
+  display: none;
+}
+
+body.lang-ms [lang="zh"],
+body.lang-ms [lang="en"] {
+  display: none;
+}
+
+body.lang-zh [lang="zh"],
+body.lang-en [lang="en"],
+body.lang-ms [lang="ms"] {
+  display: block;
+}
+
+/* 服务图标样式 */
+.service-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(255, 77, 121, 0.1); /* 粉色背景，透明度10% */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.service-icon i {
+  font-size: 24px;
+  color: #ff4d79; /* 粉色图标 */
+}
+
+/* 强制设置图标容器样式 */
+.w-12.h-12.flex.items-center.justify-center.bg-primary.bg-opacity-10.rounded-lg,
+.w-12.h-12.flex.items-center.justify-center.bg-primary.bg-opacity-10.rounded-full {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background-color: rgba(255, 77, 121, 0.1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 16px !important;
+}
+
+/* 强制设置图标颜色 */
+[class^="ri-"], [class*=" ri-"] {
+  color: #ff4d79 !important;
+  font-size: 24px !important;
+}
+
+/* 确保 Tailwind 的 text-primary 类正确应用 */
+.text-primary {
+  color: #ff4d79 !important;
+}
+
+/* 确保 Tailwind 的 bg-primary 和 bg-opacity-10 类正确应用 */
+.bg-primary.bg-opacity-10 {
+  background-color: rgba(255, 77, 121, 0.1) !important;
+}
+
+/* 确保图标容器样式正确 */
+.w-12.h-12.flex.items-center.justify-center.bg-primary.bg-opacity-10.rounded-lg,
+.w-12.h-12.flex.items-center.justify-center.bg-primary.bg-opacity-10.rounded-full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 77, 121, 0.1); /* 粉色背景，透明度10% */
+}
+
+/* 图标颜色 */
+[class^="ri-"], [class*=" ri-"] {
+  font-family: 'remixicon' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ff4d79; /* 粉色图标 */
+}
+
+/* 卡片样式 - 添加圆角 */
+.bg-white.p-6.rounded-lg.shadow-sm,
+.bg-white.p-6.shadow-sm {
+  border-radius: 16px !important; /* 更大的圆角 */
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-white.p-6.rounded-lg.shadow-sm:hover,
+.bg-white.p-6.shadow-sm:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 确保所有卡片元素都有圆角 */
+.rounded-lg {
+  border-radius: 16px !important;
+}
+
+/* 联系我们部分样式 */
+#contact .w-12.h-12 {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
+#contact .bg-pink-100 {
+  background-color: rgba(255, 192, 203, 0.2) !important;
+}
+
+#contact .text-primary {
+  color: #ff4d79 !important;
+}
+
+#contact .text-gray-800 {
+  color: #333 !important;
+}
+
+#contact .bg-gray-100 {
+  background-color: #f5f5f5 !important;
+}
+
+#contact .hover\:bg-gray-200:hover {
+  background-color: #e5e5e5 !important;
+}
+
+/* 地图容器样式 */
+#map-container {
+  width: 100%;
+  height: 350px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+#map-fallback {
+  background-color: #f5f5f5;
+  color: #666;
+  text-align: center;
+}
+
+/* 社交媒体图标样式 */
+#contact .ri-facebook-fill,
+#contact .ri-instagram-fill,
+#contact .ri-whatsapp-fill,
+#contact .ri-telegram-fill {
+  font-size: 1.25rem;
+}
+
+
+
+
+
+
+
+
+
+

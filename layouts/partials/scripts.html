@@ -1,0 +1,135 @@
+<script>
+// 语言切换函数
+function changeLanguage(lang) {
+  // 获取当前URL
+  const currentUrl = window.location.href;
+  // 构建新URL
+  const baseUrl = '{{ .Site.BaseURL }}';
+  let newUrl;
+  
+  if (lang === '{{ .Site.Language.Lang }}') {
+    return; // 已经是当前语言
+  }
+  
+  if (lang === '{{ .Site.Home.Language.Lang }}') {
+    newUrl = baseUrl; // 默认语言
+  } else {
+    newUrl = baseUrl + lang + '/';
+  }
+  
+  // 跳转到新URL
+  window.location.href = newUrl;
+}
+
+// 页面加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+  // 获取语言按钮和下拉菜单
+  const languageButton = document.getElementById('language-button');
+  const languageDropdown = document.getElementById('language-dropdown');
+  
+  // 点击语言按钮时切换下拉菜单显示状态
+  if (languageButton && languageDropdown) {
+    languageButton.addEventListener('click', function() {
+      languageDropdown.classList.toggle('hidden');
+    });
+    
+    // 点击页面其他地方时隐藏下拉菜单
+    document.addEventListener('click', function(event) {
+      if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+        languageDropdown.classList.add('hidden');
+      }
+    });
+  }
+  
+  // 获取所有导航链接
+  const navLinks = document.querySelectorAll('nav a');
+  
+  // 为每个链接添加点击事件
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      
+      // 如果是锚点链接，则阻止默认行为并平滑滚动
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        
+        // 如果只是"#"，滚动到顶部
+        if (href === '#') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          return;
+        }
+        
+        // 从href中移除"#"
+        const targetId = href.replace('#', '');
+        
+        // 查找目标部分
+        const targetSection = document.getElementById(targetId);
+        
+        // 如果目标部分存在，滚动到它
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+});
+
+// 独立的计数器动画脚本 - 确保立即执行
+(function() {
+  // 计数器动画函数
+  function animateCounter(counter, target, duration) {
+    let startTime = null;
+    const isDecimal = target % 1 !== 0;
+    
+    function updateCounter(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const currentValue = progress * target;
+      
+      counter.textContent = isDecimal 
+        ? currentValue.toFixed(1) 
+        : Math.floor(currentValue);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.textContent = isDecimal ? target.toFixed(1) : target;
+      }
+    }
+    
+    requestAnimationFrame(updateCounter);
+  }
+  
+  // 立即开始所有计数器动画
+  function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseFloat(counter.getAttribute('data-target'));
+      if (!isNaN(target)) {
+        animateCounter(counter, target, 2000);
+      }
+    });
+  }
+  
+  // 如果DOM已加载，立即执行；否则等待DOM加载完成
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters);
+  } else {
+    initCounters();
+  }
+  
+  // 为确保计数器在视口中时启动，添加滚动监听
+  window.addEventListener('scroll', function() {
+    initCounters();
+  });
+})();
+</script>
+
+
+
+

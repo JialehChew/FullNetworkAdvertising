@@ -1,0 +1,126 @@
+<!-- 客户评价部分 -->
+<section id="testimonials" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="zh">客户评价</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="en">TESTIMONIALS</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="ms">TESTIMONI</span>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="zh">客户的心声</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="en">Voice of Our Clients</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="ms">Suara Pelanggan Kami</h2>
+      <p class="text-gray-600 mt-4 max-w-3xl mx-auto" lang="zh">来自我们客户的真实评价，见证我们的服务质量与专业水平。</p>
+      <p class="text-gray-600 mt-4 max-w-3xl mx-auto" lang="en">Authentic reviews from our clients, testifying to our service quality and professional standards.</p>
+      <p class="text-gray-600 mt-4 max-w-3xl mx-auto" lang="ms">Ulasan autentik daripada pelanggan kami, membuktikan kualiti perkhidmatan dan standard profesional kami.</p>
+    </div>
+
+    <!-- 评价拼图墙 -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <!-- 评价1 -->
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          <!-- 气泡尾巴 -->
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="{{ "images/testimonials/testimonial1.png" | absURL }}" alt="客户评价1" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      <!-- 评价2 -->
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          <!-- 气泡尾巴 -->
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="{{ "images/testimonials/testimonial2.png" | absURL }}" alt="客户评价2" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      <!-- 评价3 -->
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          <!-- 气泡尾巴 -->
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="{{ "images/testimonials/testimonial3.png" | absURL }}" alt="客户评价3" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      <!-- 评价4 -->
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          <!-- 气泡尾巴 -->
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="{{ "images/testimonials/testimonial4.png" | absURL }}" alt="客户评价4" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      <!-- 评价5 -->
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          <!-- 气泡尾巴 -->
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="{{ "images/testimonials/testimonial5.png" | absURL }}" alt="客户评价5" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      <!-- 评价6 -->
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          <!-- 气泡尾巴 -->
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="{{ "images/testimonials/testimonial6.png" | absURL }}" alt="客户评价6" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹出层 -->
+    <div id="testimonial-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+      <div class="bg-white p-4 rounded-lg max-w-3xl max-h-[90vh] overflow-auto">
+        <div class="flex justify-end">
+          <button id="close-modal" class="text-gray-500 hover:text-gray-800">
+            <i class="ri-close-line text-2xl"></i>
+          </button>
+        </div>
+        <div class="p-2">
+          <img id="modal-image" src="" alt="放大的评价" class="w-full h-auto">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 添加JavaScript代码 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const testimonialItems = document.querySelectorAll('.testimonial-item');
+      const modal = document.getElementById('testimonial-modal');
+      const modalImage = document.getElementById('modal-image');
+      const closeModal = document.getElementById('close-modal');
+      
+      testimonialItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const imgSrc = this.querySelector('img').src;
+          modalImage.src = imgSrc;
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      
+      closeModal.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      });
+      
+      // 点击模态框外部关闭
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+  </script>
+</section>

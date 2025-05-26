@@ -1,0 +1,19 @@
+{{ $img := .image }}
+{{ $alt := .alt | default "Image" }}
+{{ $class := .class | default "" }}
+{{ $widthAttr := .width | default "auto" }}
+{{ $heightAttr := .height | default "auto" }}
+{{ $lazy := .lazy | default true }}
+
+<img 
+  src="{{ $img }}" 
+  alt="{{ $alt }}" 
+  class="{{ $class }}" 
+  width="{{ $widthAttr }}" 
+  height="{{ $heightAttr }}" 
+  {{ if $lazy }}loading="lazy"{{ end }}
+  {{ if .webp }}
+    srcset="{{ .webp }} 1x"
+    onerror="this.onerror=null; this.srcset=''; this.src='{{ $img }}';"
+  {{ end }}
+>

@@ -1,0 +1,166 @@
+<div id="cookie-consent" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 z-50 hidden">
+  <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+    <div class="mb-4 md:mb-0">
+      <p lang="zh">我们使用 Cookie 来改善您的浏览体验并收集匿名使用数据。继续使用本网站即表示您同意我们的 <a href="/privacy-policy" class="underline">隐私政策</a>。</p>
+      <p lang="en">We use cookies to improve your browsing experience and collect anonymous usage data. By continuing to use this site, you agree to our <a href="/en/privacy-policy" class="underline">Privacy Policy</a>.</p>
+      <p lang="ms">Kami menggunakan kuki untuk meningkatkan pengalaman penyemakan anda dan mengumpul data penggunaan tanpa nama. Dengan terus menggunakan laman web ini, anda bersetuju dengan <a href="/ms/privacy-policy" class="underline">Dasar Privasi</a> kami.</p>
+    </div>
+    <div class="flex space-x-4">
+      <button id="accept-cookies" class="bg-primary text-white px-4 py-2 rounded-button">
+        <span lang="zh">接受</span>
+        <span lang="en">Accept</span>
+        <span lang="ms">Terima</span>
+      </button>
+      <button id="reject-cookies" class="bg-gray-700 text-white px-4 py-2 rounded-button">
+        <span lang="zh">仅必要</span>
+        <span lang="en">Essential Only</span>
+        <span lang="ms">Penting Sahaja</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// 优化的隐私合规脚本
+(function() {
+  // 隐私设置管理器
+  const privacyManager = {
+    // 存储键
+    storageKey: 'privacy-preferences',
+    
+    // 默认设置
+    defaultSettings: {
+      necessary: true,  // 必要的 cookies（始终启用）
+      analytics: false, // 分析 cookies
+      marketing: false, // 营销 cookies
+      preferences: false, // 偏好 cookies
+      consentDate: null // 同意日期
+    },
+    
+    // 获取当前设置
+    getSettings: function() {
+      try {
+        const stored = localStorage.getItem(this.storageKey);
+        if (stored) {
+          return JSON.parse(stored);
+        }
+      } catch (e) {
+        console.error('Failed to load privacy settings:', e);
+      }
+      return { ...this.defaultSettings };
+    },
+    
+    // 保存设置
+    saveSettings: function(settings) {
+      try {
+        // 确保必要的 cookies 始终启用
+        settings.necessary = true;
+        // 添加同意日期
+        settings.consentDate = new Date().toISOString();
+        // 保存到本地存储
+        localStorage.setItem(this.storageKey, JSON.stringify(settings));
+        return true;
+      } catch (e) {
+        console.error('Failed to save privacy settings:', e);
+        return false;
+      }
+    },
+    
+    // 检查是否已给予同意
+    hasConsent: function() {
+      const settings = this.getSettings();
+      return settings.consentDate !== null;
+    },
+    
+    // 检查特定类别是否已同意
+    hasConsentFor: function(category) {
+      const settings = this.getSettings();
+      return settings[category] === true;
+    },
+    
+    // 接受所有 cookies
+    acceptAll: function() {
+      return this.saveSettings({
+        necessary: true,
+        analytics: true,
+        marketing: true,
+        preferences: true
+      });
+    },
+    
+    // 仅接受必要的 cookies
+    acceptNecessaryOnly: function() {
+      return this.saveSettings({
+        necessary: true,
+        analytics: false,
+        marketing: false,
+        preferences: false
+      });
+    },
+    
+    // 应用隐私设置
+    applySettings: function() {
+      const settings = this.getSettings();
+      
+      // 如果用户拒绝了分析 cookies，禁用相关功能
+      if (!settings.analytics) {
+        // 禁用自定义事件跟踪
+        window.trackEvent = function() {
+          // 空函数，不执行任何操作
+        };
+        
+        // 禁用性能监控
+        window.performanceMonitoringEnabled = false;
+      } else {
+        // 启用性能监控
+        window.performanceMonitoringEnabled = true;
+      }
+      
+      // 如果用户拒绝了偏好 cookies，重置相关设置
+      if (!settings.preferences) {
+        // 例如，重置语言偏好
+        localStorage.removeItem('preferredLanguage');
+      }
+      
+      // 记录应用的设置
+      console.log('Privacy settings applied:', settings);
+    }
+  };
+  
+  // 初始化 cookie 同意横幅
+  function initCookieConsent() {
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptButton = document.getElementById('accept-cookies');
+    const rejectButton = document.getElementById('reject-cookies');
+    
+    // 如果尚未给予同意，显示横幅
+    if (!privacyManager.hasConsent()) {
+      cookieConsent.classList.remove('hidden');
+    } else {
+      // 已有同意，应用设置
+      privacyManager.applySettings();
+    }
+    
+    // 接受所有 cookies
+    acceptButton.addEventListener('click', function() {
+      privacyManager.acceptAll();
+      cookieConsent.classList.add('hidden');
+      privacyManager.applySettings();
+    });
+    
+    // 仅接受必要的 cookies
+    rejectButton.addEventListener('click', function() {
+      privacyManager.acceptNecessaryOnly();
+      cookieConsent.classList.add('hidden');
+      privacyManager.applySettings();
+    });
+  }
+  
+  // 当 DOM 加载完成时初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieConsent);
+  } else {
+    initCookieConsent();
+  }
+})();
+</script>

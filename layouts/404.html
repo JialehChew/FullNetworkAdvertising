@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="container mx-auto px-4 py-16 min-h-screen flex flex-col items-center justify-center text-center">
+  <h1 class="text-4xl md:text-6xl font-bold text-primary mb-6">
+    <span lang="zh">404 - 页面未找到</span>
+    <span lang="en">404 - Page Not Found</span>
+    <span lang="ms">404 - Halaman Tidak Dijumpai</span>
+  </h1>
+  
+  <p class="text-xl mb-8 max-w-2xl">
+    <span lang="zh">抱歉，您访问的页面不存在或已被移动。</span>
+    <span lang="en">Sorry, the page you are looking for doesn't exist or has been moved.</span>
+    <span lang="ms">Maaf, halaman yang anda cari tidak wujud atau telah dipindahkan.</span>
+  </p>
+  
+  <div class="mb-12">
+    <img src="{{ "images/404-illustration.svg" | absURL }}" alt="404 Illustration" class="max-w-md mx-auto" width="400" height="300">
+  </div>
+  
+  <a href="{{ .Site.BaseURL }}" class="bg-primary text-white px-8 py-3 rounded-button text-lg hover:bg-opacity-90 transition-all">
+    <span lang="zh">返回首页</span>
+    <span lang="en">Back to Home</span>
+    <span lang="ms">Kembali ke Laman Utama</span>
+  </a>
+  
+  <div class="mt-12">
+    <p class="text-gray-600">
+      <span lang="zh">您可能想要查找：</span>
+      <span lang="en">You might be looking for:</span>
+      <span lang="ms">Anda mungkin mencari:</span>
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 mt-4">
+      <a href="{{ .Site.BaseURL }}#about-us" class="text-secondary hover:underline">
+        <span lang="zh">关于我们</span>
+        <span lang="en">About Us</span>
+        <span lang="ms">Tentang Kami</span>
+      </a>
+      <a href="{{ .Site.BaseURL }}#services" class="text-secondary hover:underline">
+        <span lang="zh">服务</span>
+        <span lang="en">Services</span>
+        <span lang="ms">Perkhidmatan</span>
+      </a>
+      <a href="{{ .Site.BaseURL }}#contact" class="text-secondary hover:underline">
+        <span lang="zh">联系我们</span>
+        <span lang="en">Contact Us</span>
+        <span lang="ms">Hubungi Kami</span>
+      </a>
+    </div>
+  </div>
+</div>
+{{ end }}
+

@@ -1,0 +1,137 @@
+<script>
+// 优化的性能监控脚本
+(function() {
+  // 只在生产环境中运行
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
+  
+  // 使用 requestIdleCallback 在浏览器空闲时执行，减少对用户体验的影响
+  const runWhenIdle = window.requestIdleCallback || 
+    function(cb) {
+      const start = Date.now();
+      return setTimeout(function() {
+        cb({
+          didTimeout: false,
+          timeRemaining: function() {
+            return Math.max(0, 50 - (Date.now() - start));
+          }
+        });
+      }, 1);
+    };
+  
+  // 在页面加载完成后收集性能数据
+  window.addEventListener('load', function() {
+    runWhenIdle(function() {
+      if (!window.performance) return;
+      
+      try {
+        // 基本导航计时
+        const navData = performance.getEntriesByType('navigation')[0];
+        if (!navData) return;
+        
+        const pageLoadTime = navData.loadEventEnd - navData.startTime;
+        const ttfb = navData.responseStart - navData.requestStart;
+        const domContentLoaded = navData.domContentLoadedEventEnd - navData.startTime;
+        const firstPaint = performance.getEntriesByName('first-paint')[0]?.startTime || 0;
+        
+        // 资源加载时间
+        const resources = performance.getEntriesByType('resource');
+        let totalResourceSize = 0;
+        let slowestResource = { name: '', duration: 0 };
+        let resourcesByType = {
+          script: { count: 0, size: 0 },
+          css: { count: 0, size: 0 },
+          img: { count: 0, size: 0 },
+          font: { count: 0, size: 0 },
+          other: { count: 0, size: 0 }
+        };
+        
+        resources.forEach(resource => {
+          const size = resource.encodedBodySize || 0;
+          totalResourceSize += size;
+          
+          // 记录最慢资源
+          if (resource.duration > slowestResource.duration) {
+            slowestResource = {
+              name: resource.name,
+              duration: resource.duration
+            };
+          }
+          
+          // 按类型分类资源
+          let type = 'other';
+          if (resource.name.match(/\.js(\?|$)/)) type = 'script';
+          else if (resource.name.match(/\.css(\?|$)/)) type = 'css';
+          else if (resource.name.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?|$)/)) type = 'img';
+          else if (resource.name.match(/\.(woff|woff2|ttf|otf|eot)(\?|$)/)) type = 'font';
+          
+          resourcesByType[type].count++;
+          resourcesByType[type].size += size;
+        });
+        
+        // 收集 Web Vitals
+        let cls = 0;
+        let lcp = 0;
+        let fid = 0;
+        
+        // 创建性能报告
+        const performanceReport = {
+          url: window.location.href,
+          timestamp: new Date().toISOString(),
+          timings: {
+            pageLoadTime: Math.round(pageLoadTime),
+            ttfb: Math.round(ttfb),
+            domContentLoaded: Math.round(domContentLoaded),
+            firstPaint: Math.round(firstPaint)
+          },
+          resources: {
+            total: {
+              count: resources.length,
+              size: Math.round(totalResourceSize / 1024)
+            },
+            byType: resourcesByType,
+            slowest: {
+              name: slowestResource.name,
+              duration: Math.round(slowestResource.duration)
+            }
+          },
+          webVitals: {
+            cls: cls.toFixed(3),
+            lcp: Math.round(lcp),
+            fid: Math.round(fid)
+          },
+          userAgent: navigator.userAgent,
+          screenSize: `${window.innerWidth}x${window.innerHeight}`
+        };
+        
+        // 记录到控制台
+        console.log('Performance Report:', performanceReport);
+        
+        // 可选：将数据存储在本地存储中，以便后续分析
+        try {
+          // 获取现有数据
+          const storedReports = JSON.parse(localStorage.getItem('performance-reports') || '[]');
+          // 限制存储的报告数量，防止存储过大
+          if (storedReports.length >= 10) storedReports.shift();
+          // 添加新报告
+          storedReports.push(performanceReport);
+          // 保存回本地存储
+          localStorage.setItem('performance-reports', JSON.stringify(storedReports));
+        } catch (e) {
+          console.error('Failed to store performance report:', e);
+        }
+        
+        // 可选：发送到您自己的服务器
+        /*
+        fetch('/api/performance-log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(performanceReport)
+        }).catch(err => console.error('Failed to log performance data:', err));
+        */
+      } catch (e) {
+        console.error('Error collecting performance data:', e);
+      }
+    });
+  });
+})();
+</script>

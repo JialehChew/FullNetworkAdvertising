@@ -1,0 +1,102 @@
+<!-- 基本元数据 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#ff4d79">
+
+<!-- 网站图标 -->
+<link rel="apple-touch-icon" href="{{ "images/apple-touch-icon.png" | absURL }}">
+
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta name="keywords" content="{{ if .Keywords }}{{ delimit .Keywords ", " }}{{ else }}{{ .Site.Params.keywords }}{{ end }}">
+<meta name="author" content="{{ .Site.Params.author }}">
+
+<!-- 规范链接 -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- 多语言支持 -->
+{{ range .Translations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{ end }}
+<link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+
+<!-- Meta Description -->
+{{ if .IsHome }}
+  {{ if eq .Site.Language.Lang "zh" }}
+  <meta name="description" content="全方位网络营销解决方案，帮助您的企业在数字时代脱颖而出。我们提供社交媒体管理、搜索引擎优化、广告投放和内容创作等服务。">
+  {{ else if eq .Site.Language.Lang "en" }}
+  <meta name="description" content="Comprehensive digital marketing solutions to help your business stand out in the digital age. We offer social media management, SEO, advertising, and content creation services.">
+  {{ else if eq .Site.Language.Lang "ms" }}
+  <meta name="description" content="Penyelesaian pemasaran digital komprehensif untuk membantu perniagaan anda menonjol dalam era digital. Kami menawarkan pengurusan media sosial, SEO, pengiklanan, dan perkhidmatan penciptaan kandungan.">
+  {{ end }}
+{{ else }}
+  <meta name="description" content="{{ .Description | default .Site.Params.description }}">
+{{ end }}
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}">
+{{ if .IsHome }}
+  {{ if eq .Site.Language.Lang "zh" }}
+  <meta property="og:description" content="全方位网络营销解决方案，帮助您的企业在数字时代脱颖而出。我们提供社交媒体管理、搜索引擎优化、广告投放和内容创作等服务。">
+  {{ else if eq .Site.Language.Lang "en" }}
+  <meta property="og:description" content="Comprehensive digital marketing solutions to help your business stand out in the digital age. We offer social media management, SEO, advertising, and content creation services.">
+  {{ else if eq .Site.Language.Lang "ms" }}
+  <meta property="og:description" content="Penyelesaian pemasaran digital komprehensif untuk membantu perniagaan anda menonjol dalam era digital. Kami menawarkan pengurusan media sosial, SEO, pengiklanan, dan perkhidmatan penciptaan kandungan.">
+  {{ end }}
+{{ else }}
+  <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
+{{ end }}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ "images/logo.png" | absURL }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:locale" content="{{ .Site.Language.Lang }}">
+{{ if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}">
+{{ end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}">
+{{ if .IsHome }}
+  {{ if eq .Site.Language.Lang "zh" }}
+  <meta name="twitter:description" content="全方位网络营销解决方案，帮助您的企业在数字时代脱颖而出。我们提供社交媒体管理、搜索引擎优化、广告投放和内容创作等服务。">
+  {{ else if eq .Site.Language.Lang "en" }}
+  <meta name="twitter:description" content="Comprehensive digital marketing solutions to help your business stand out in the digital age. We offer social media management, SEO, advertising, and content creation services.">
+  {{ else if eq .Site.Language.Lang "ms" }}
+  <meta name="twitter:description" content="Penyelesaian pemasaran digital komprehensif untuk membantu perniagaan anda menonjol dalam era digital. Kami menawarkan pengurusan media sosial, SEO, pengiklanan, dan perkhidmatan penciptaan kandungan.">
+  {{ end }}
+{{ else }}
+  <meta name="twitter:description" content="{{ .Description | default .Site.Params.description }}">
+{{ end }}
+<meta name="twitter:image" content="{{ "images/logo.png" | absURL }}">
+
+<!-- 确保 Remix Icon 正确加载 -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<!-- 内联关键的 Remix Icon CSS -->
+<style>
+@font-face {
+  font-family: "remixicon";
+  src: url('https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.ttf') format('truetype');
+  font-display: swap;
+}
+
+[class^="ri-"], [class*=" ri-"] {
+  font-family: 'remixicon' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
+
+
+
+

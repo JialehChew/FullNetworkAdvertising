@@ -1,0 +1,70 @@
+<!-- 页脚部分 -->
+<footer class="bg-gray-900 text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- 公司信息 -->
+      <div>
+        <a href="{{ .Site.BaseURL }}" class="inline-block mb-4">
+          <img src="{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" class="h-10 bg-white p-1 rounded">
+        </a>
+        <p class="text-gray-400 mb-6" lang="zh">Full Network Advertising 是总部位于Klang的马来西亚领先数字营销机构，专业服务吉隆坡、雪兰莪及全马来西亚地区。我们深耕本地市场，为品牌提供创新、高效的数字营销解决方案。</p>
+        <p class="text-gray-400 mb-6" lang="en">Full Network Advertising is a leading digital marketing agency in Malaysia, headquartered in Klang and professionally serving Kuala Lumpur, Selangor, and nationwide. We specialize in local market expertise, providing innovative and effective digital marketing solutions for brands.</p>
+        <p class="text-gray-400 mb-6" lang="ms">Full Network Advertising adalah agensi pemasaran digital terkemuka di Malaysia yang beribu pejabat di Klang, melayani Kuala Lumpur, Selangor dan seluruh Malaysia secara profesional. Kami pakar dalam pasaran tempatan, menyediakan penyelesaian pemasaran digital yang inovatif dan berkesan untuk jenama.</p>
+        <div class="flex space-x-4">
+          <a href="{{ .Site.Params.social.facebook }}" target="_blank" class="text-gray-400 hover:text-white transition">
+            <i class="ri-facebook-fill text-xl"></i>
+          </a>
+          <a href="{{ .Site.Params.social.instagram }}" target="_blank" class="text-gray-400 hover:text-white transition">
+            <i class="ri-instagram-fill text-xl"></i>
+          </a>
+          <a href="{{ .Site.Params.social.whatsapp }}" target="_blank" class="text-gray-400 hover:text-white transition">
+            <i class="ri-whatsapp-fill text-xl"></i>
+          </a>
+          <a href="{{ .Site.Params.social.telegram }}" target="_blank" class="text-gray-400 hover:text-white transition">
+            <i class="ri-telegram-fill text-xl"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 快速链接 -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">{{ i18n "quickLinks" }}</h3>
+        <ul class="space-y-2">
+          <li><a href="{{ .Site.BaseURL }}" class="text-gray-400 hover:text-white transition">{{ i18n "home" }}</a></li>
+          <li><a href="#about" class="text-gray-400 hover:text-white transition">{{ i18n "aboutUs" }}</a></li>
+          <li><a href="#services" class="text-gray-400 hover:text-white transition">{{ i18n "services" }}</a></li>
+          <li><a href="#contact" class="text-gray-400 hover:text-white transition">{{ i18n "contact" }}</a></li>
+        </ul>
+      </div>
+      
+      <!-- 联系信息 -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">{{ i18n "contactInfo" }}</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="ri-map-pin-line mr-2 mt-1"></i>
+            <span class="text-gray-400">83-2, Jalan Mahogani 5/KS7, Bandar Botanic, 41200, Klang, Selangor, Malaysia</span>
+          </li>
+          <li class="flex items-start">
+            <i class="ri-mail-line mr-2 mt-1"></i>
+            <span class="text-gray-400">fullnetwork63@gmail.com</span>
+          </li>
+          <li class="flex items-start">
+            <i class="ri-phone-line mr-2 mt-1"></i>
+            <span class="text-gray-400">+60 14-663 2896</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+      <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. {{ i18n "allRightsReserved" }}</p>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+

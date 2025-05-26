@@ -1,0 +1,60 @@
+# 通用
+heroTitle: "全方位网络营销解决方案"
+heroDescription: "我们提供专业的网络营销服务，帮助您的企业在数字时代脱颖而出。从社交媒体管理到搜索引擎优化，我们的团队将为您定制最适合的营销策略。"
+contactUs: "联系我们"
+ourServices: "我们的服务"
+home: "首页"
+aboutUs: "关于我们"
+services: "服务"
+contact: "联系"
+allRightsReserved: "版权所有"
+
+# 关于我们
+aboutUsTitle: "关于我们"
+aboutUsSubtitle: "我们是一家专注于网络营销的专业团队，致力于帮助企业提升品牌知名度和市场竞争力。"
+experienceTitle: "丰富经验"
+experienceDescription: "拥有多年网络营销经验，为各行业客户提供过成功的营销解决方案。"
+teamTitle: "专业团队"
+teamDescription: "我们的团队由营销专家、内容创作者和技术人员组成，确保全方位服务。"
+supportTitle: "全天候支持"
+supportDescription: "我们提供全天候客户支持，随时解答您的问题并提供专业建议。"
+
+# 服务
+servicesTitle: "我们的服务"
+servicesSubtitle: "我们提供全面的网络营销服务，帮助您的企业在数字世界中获得更多曝光和客户。"
+seoTitle: "搜索引擎优化"
+seoDescription: "通过优化网站结构和内容，提高您在搜索引擎中的排名，获得更多有针对性的流量。"
+socialMediaTitle: "社交媒体营销"
+socialMediaDescription: "在各大社交平台上建立品牌形象，增加粉丝互动，提升品牌知名度。"
+emailMarketingTitle: "电子邮件营销"
+emailMarketingDescription: "设计有效的邮件营销活动，与潜在客户建立联系，提高转化率。"
+ppcTitle: "付费广告"
+ppcDescription: "在搜索引擎和社交媒体上投放精准的付费广告，快速获取目标客户。"
+contentMarketingTitle: "内容营销"
+contentMarketingDescription: "创作高质量、有价值的内容，吸引目标受众，建立行业权威。"
+analyticsTitle: "数据分析"
+analyticsDescription: "通过数据分析了解营销效果，优化策略，提高投资回报率。"
+
+# 联系我们
+contactTitle: "联系我们"
+contactSubtitle: "如果您有任何问题或需求，请随时与我们联系，我们将尽快回复您。"
+contactInfo: "联系信息"
+address: "地址"
+email: "电子邮件"
+phone: "电话"
+followUs: "关注我们"
+sendMessage: "发送消息"
+name: "姓名"
+emailAddress: "电子邮件地址"
+subject: "主题"
+message: "消息"
+send: "发送"
+
+# 页脚
+quickLinks: "快速链接"
+
+# 404页面
+pageNotFound: "页面未找到"
+pageNotFoundMessage: "您访问的页面不存在或已被移除。"
+backToHome: "返回首页"
+

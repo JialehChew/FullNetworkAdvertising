@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# 禁止爬取某些不必要的路径
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /search
+
+# 禁止爬取特定文件类型
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+
+# 允许爬取 sitemap.xml
+Allow: /sitemap.xml
+
+# 指定 Sitemap 位置
+Sitemap: https://www.fullnetworkads.com/sitemap.xml
+
+# 多语言 Sitemap
+Sitemap: https://www.fullnetworkads.com/zh/sitemap.xml
+Sitemap: https://www.fullnetworkads.com/en/sitemap.xml
+Sitemap: https://www.fullnetworkads.com/ms/sitemap.xml
+

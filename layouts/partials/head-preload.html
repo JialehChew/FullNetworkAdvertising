@@ -1,0 +1,49 @@
+<!-- 预连接到常用域名 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+<!-- 预加载关键资源 -->
+<link rel="preload" href="{{ "images/logo.png" | absURL }}" as="image">
+<link rel="preload" href="{{ "fonts/main-font.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+
+<!-- 预加载首屏背景图 -->
+<link rel="preload" href="{{ "images/hero-bg.jpg" | absURL }}" as="image">
+
+<!-- 内联关键 CSS -->
+<style>
+/* 这里放置关键 CSS，即首屏渲染所需的最小 CSS 集合 */
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.hero-section {
+  background-image: url('{{ "images/hero-bg.jpg" | absURL }}') !important;
+  background-size: cover !important;
+  background-position: center right !important;
+  min-height: 80vh !important;
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+}
+.hero-section::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(255, 77, 121, 0.1) !important;
+  z-index: 1 !important;
+}
+.hero-section > .container {
+  position: relative !important;
+  z-index: 2 !important;
+}
+/* 添加更多关键样式... */
+</style>
+
+
+
+

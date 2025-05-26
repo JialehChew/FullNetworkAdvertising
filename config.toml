@@ -1,0 +1,30 @@
+baseURL = 'https://www.fullnetworkads.com/'
+title = 'Full Network Advertising - 全方位网络营销解决方案'
+defaultContentLanguage = 'zh'
+
+# 重要：设置默认语言也使用语言代码路径
+defaultContentLanguageInSubdir = true
+
+[languages]
+  [languages.zh]
+    languageName = '中文'
+    weight = 1
+    contentDir = 'content/zh'
+    title = 'Full Network Advertising - 全方位网络营销解决方案'
+    description = '全方位网络营销解决方案，帮助您的企业在数字时代脱颖而出。我们提供社交媒体管理、搜索引擎优化、广告投放和内容创作等服务。'
+  [languages.en]
+    languageName = 'English'
+    weight = 2
+    contentDir = 'content/en'
+    title = 'Full Network Advertising - Comprehensive Digital Marketing Solutions'
+    description = 'Comprehensive digital marketing solutions to help your business stand out in the digital age. We offer social media management, SEO, advertising, and content creation services.'
+  [languages.ms]
+    languageName = 'Melayu'
+    weight = 3
+    contentDir = 'content/ms'
+    title = 'Full Network Advertising - Penyelesaian Pemasaran Digital Komprehensif'
+    description = 'Penyelesaian pemasaran digital komprehensif untuk membantu perniagaan anda menonjol dalam era digital. Kami menawarkan pengurusan media sosial, SEO, pengiklanan, dan perkhidmatan penciptaan kandungan.'
+# 添加 Google Maps API 密钥
+[params]
+  googleMapsApiKey = "YOUR_API_KEY" # 请替换为您的实际 API 密钥
+

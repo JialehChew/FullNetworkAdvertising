@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#ff4d79">
+    
+    <!-- 添加 Apple Touch 图标 -->
+    <link rel="apple-touch-icon" href="{{ "images/apple-touch-icon.png" | absURL }}">
+    
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+    
+    <!-- 规范链接 - 防止重复内容问题 -->
+    <link rel="canonical" href="{{ .Permalink }}">
+    
+    <!-- 语言替代链接 - 帮助搜索引擎理解多语言关系 -->
+    {{ range .Translations }}
+    <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+    {{ end }}
+    <link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="{{ "fonts/your-main-font.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+    
+    <!-- 延迟加载非关键 JavaScript -->
+    <script src="https://cdn.tailwindcss.com/3.4.16" defer></script>
+    
+    <!-- 内联关键 CSS -->
+    <style>
+      /* 添加关键渲染路径所需的最小 CSS */
+      body {
+        font-family:'Noto Sans SC',sans-serif;
+        margin:0;
+        padding:0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .container {width:100%;max-width:1200px;margin:0 auto;padding:0 1rem}
+      header {background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+      
+      /* 强制移除 Hero 部分背景图片的渐变色，保留原始图片 */
+      .hero-section {
+        background-image: url('/images/hero-bg.jpg') !important;
+        background-size: cover !important;
+        background-position: center right !important;
+        position: relative !important;
+      }
+
+      /* 添加轻微的暗色叠加层，确保文字可读性 */
+      .hero-section::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: rgba(255, 77, 121, 0.1) !important; /* 保留轻微的粉色遮罩 */
+        z-index: 1 !important;
+      }
+
+      /* 确保内容在遮罩层上方 */
+      .hero-section > .container {
+        position: relative !important;
+        z-index: 2 !important;
+      }
+      
+      /* 统计文字样式 - 黑色轮廓配合白色填充 */
+      .stats-text {
+        color: #333 !important;
+        font-weight: 600 !important;
+        font-size: 0.875rem !important;
+        text-shadow: none !important;
+        letter-spacing: 0.02em;
+        margin: 0;
+      }
+      
+      /* 强制设置图标容器样式 */
+      .w-12.h-12.flex.items-center.justify-center.bg-primary.bg-opacity-10.rounded-lg,
+      .w-12.h-12.flex.items-center.justify-center.bg-primary.bg-opacity-10.rounded-full {
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 50% !important;
+        background-color: rgba(255, 77, 121, 0.1) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-bottom: 16px !important;
+      }
+      
+      /* 强制设置图标颜色 */
+      [class^="ri-"], [class*=" ri-"] {
+        color: #ff4d79 !important;
+        font-size: 24px !important;
+      }
+      
+      /* 按钮样式 */
+      .bg-primary {
+        background-color: #ff4d79 !important;
+      }
+      
+      .text-primary {
+        color: #ff4d79 !important;
+      }
+      
+      /* 卡片圆角样式 */
+      .rounded-lg, 
+      .bg-white.p-6.rounded-lg.shadow-sm,
+      .bg-white.p-6.shadow-sm,
+      .bg-white.p-8.rounded-lg,
+      .bg-white.p-8 {
+        border-radius: 16px !important;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+      }
+      
+      /* 按钮圆角样式 */
+      .rounded-button,
+      a[href="#contact"],
+      button.bg-primary,
+      .bg-primary {
+        border-radius: 16px !important;
+      }
+      
+      .shadow-md {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+      }
+      
+      /* 移除 Hero 部分的文本阴影 */
+      .hero-section h1, 
+      .hero-section p {
+        text-shadow: none;
+      }
+    </style>
+    
+    <!-- 其他 CSS 可以异步加载 -->
+    <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}" media="print" onload="this.media='all'">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 在head部分确保正确加载Remix Icon -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}">
+    <link rel="manifest" href="{{ "site.webmanifest" | absURL }}">
+    <link rel="mask-icon" href="{{ "safari-pinned-tab.svg" | absURL }}" color="#ff4d79">
+    <meta name="msapplication-TileColor" content="#ff4d79">
+    
+    <!-- Meta Description -->
+    {{ if .IsHome }}
+      {{ if eq .Site.Language.Lang "zh" }}
+      <meta name="description" content="全方位网络营销解决方案，帮助您的企业在数字时代脱颖而出。我们提供社交媒体管理、搜索引擎优化、广告投放和内容创作等服务。">
+      {{ else if eq .Site.Language.Lang "en" }}
+      <meta name="description" content="Comprehensive digital marketing solutions to help your business stand out in the digital age. We offer social media management, SEO, advertising, and content creation services.">
+      {{ else if eq .Site.Language.Lang "ms" }}
+      <meta name="description" content="Penyelesaian pemasaran digital komprehensif untuk membantu perniagaan anda menonjol dalam era digital. Kami menawarkan pengurusan media sosial, SEO, pengiklanan, dan perkhidmatan penciptaan kandungan.">
+      {{ end }}
+    {{ else }}
+      <meta name="description" content="{{ .Description | default .Site.Params.description }}">
+    {{ end }}
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}">
+    {{ if .IsHome }}
+      {{ if eq .Site.Language.Lang "zh" }}
+      <meta property="og:description" content="全方位网络营销解决方案，帮助您的企业在数字时代脱颖而出。我们提供社交媒体管理、搜索引擎优化、广告投放和内容创作等服务。">
+      {{ else if eq .Site.Language.Lang "en" }}
+      <meta property="og:description" content="Comprehensive digital marketing solutions to help your business stand out in the digital age. We offer social media management, SEO, advertising, and content creation services.">
+      {{ else if eq .Site.Language.Lang "ms" }}
+      <meta property="og:description" content="Penyelesaian pemasaran digital komprehensif untuk membantu perniagaan anda menonjol dalam era digital. Kami menawarkan pengurusan media sosial, SEO, pengiklanan, dan perkhidmatan penciptaan kandungan.">
+      {{ end }}
+    {{ else }}
+      <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
+    {{ end }}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:image" content="{{ "images/logo.png" | absURL }}">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ .Site.BaseURL }}",
+      "logo": "{{ "images/logo.png" | absURL }}",
+      "image": "{{ "images/hero-bg.jpg" | absURL }}",
+      {{ if eq .Site.Language.Lang "zh" }}
+      "description": "Full Network Advertising 是马来西亚领先的数字营销公司，专注于社交媒体营销、SEO 优化、品牌策划和内容创作。",
+      {{ else if eq .Site.Language.Lang "en" }}
+      "description": "Comprehensive digital marketing solutions to help your business stand out in the digital age. We offer social media management, SEO, advertising, and content creation services.",
+      {{ else if eq .Site.Language.Lang "ms" }}
+      "description": "Penyelesaian pemasaran digital komprehensif untuk membantu perniagaan anda menonjol dalam era digital. Kami menawarkan pengurusan media sosial, SEO, pengiklanan, dan perkhidmatan penciptaan kandungan.",
+      {{ end }}
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "83-2, Jalan Mahogani 5/KS7, Bandar Botanic",
+        "addressLocality": "Klang",
+        "addressRegion": "Selangor",
+        "postalCode": "41200",
+        "addressCountry": "MY"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "3.0095",
+        "longitude": "101.4200"
+      },
+      "telephone": "+60 14-663 2896",
+      "email": "fullnetwork63@gmail.com",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
+      "sameAs": [
+        "{{ .Site.Params.social.facebook }}",
+        "{{ .Site.Params.social.instagram }}"
+      ],
+      "priceRange": "$$",
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "3.0095",
+          "longitude": "101.4200"
+        },
+        "geoRadius": "50000"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Digital Marketing Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              {{ if eq .Site.Language.Lang "zh" }}
+              "name": "社交媒体营销",
+              "description": "专业社交媒体账号管理，内容创作与广告投放"
+              {{ else if eq .Site.Language.Lang "en" }}
+              "name": "Social Media Marketing",
+              "description": "Professional social media account management, content creation and advertising"
+              {{ else if eq .Site.Language.Lang "ms" }}
+              "name": "Pemasaran Media Sosial",
+              "description": "Pengurusan akaun media sosial profesional, penciptaan kandungan dan pengiklanan"
+              {{ end }}
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              {{ if eq .Site.Language.Lang "zh" }}
+              "name": "搜索引擎优化",
+              "description": "提高网站在搜索引擎中的排名，增加有机流量"
+              {{ else if eq .Site.Language.Lang "en" }}
+              "name": "Search Engine Optimization",
+              "description": "Improve website ranking in search engines and increase organic traffic"
+              {{ else if eq .Site.Language.Lang "ms" }}
+              "name": "Pengoptimuman Enjin Carian",
+              "description": "Meningkatkan kedudukan laman web dalam enjin carian dan meningkatkan trafik organik"
+              {{ end }}
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              {{ if eq .Site.Language.Lang "zh" }}
+              "name": "内容创作",
+              "description": "为客户量身定制创意内容，包括文案撰写、短视频脚本、海报素材，传达品牌故事"
+              {{ else if eq .Site.Language.Lang "en" }}
+              "name": "Content Creation",
+              "description": "Customize creative content for clients, including copywriting, short video scripts, and poster materials to convey brand stories"
+              {{ else if eq .Site.Language.Lang "ms" }}
+              "name": "Penciptaan Kandungan",
+              "description": "Menyesuaikan kandungan kreatif untuk pelanggan, termasuk penulisan, skrip video pendek, dan bahan poster untuk menyampaikan cerita jenama"
+              {{ end }}
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              {{ if eq .Site.Language.Lang "zh" }}
+              "name": "品牌策划",
+              "description": "提供完整品牌策略规划，包括品牌定位、视觉识别系统设计和营销传播策略"
+              {{ else if eq .Site.Language.Lang "en" }}
+              "name": "Brand Planning",
+              "description": "Provide complete brand strategy planning, including brand positioning, visual identity system design, and marketing communication strategy"
+              {{ else if eq .Site.Language.Lang "ms" }}
+              "name": "Perancangan Jenama",
+              "description": "Menyediakan perancangan strategi jenama yang lengkap, termasuk penentuan kedudukan jenama, reka bentuk sistem identiti visual, dan strategi komunikasi pemasaran"
+              {{ end }}
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    <!-- 添加 WebSite 结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "{{ .Site.BaseURL }}",
+      "name": "{{ .Site.Title }}",
+      "description": "{{ .Site.Params.description }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ .Site.BaseURL }}search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <!-- 安全头部 - 修改 CSP 以允许 Google Maps -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://www.google.com https://maps.googleapis.com https://maps.gstatic.com; frame-src 'self' https://www.google.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <!-- 确保 Tailwind 配置包含正确的主色调 -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#ff4d79',
+              secondary: '#0066ff'
+            },
+            borderRadius: {
+              'none': '0px',
+              'sm': '4px',
+              DEFAULT: '8px',
+              'md': '12px',
+              'lg': '16px',
+              'xl': '20px',
+              '2xl': '24px',
+              '3xl': '32px',
+              'full': '9999px',
+              'button': '8px'
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-white lang-{{ .Site.Language.Lang }}" id="main-body">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <img src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }} Logo" class="h-12">
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-700 hover:text-primary font-medium" lang="zh">首页</a>
+                <a href="#" class="text-gray-700 hover:text-primary font-medium" lang="en">Home</a>
+                <a href="#" class="text-gray-700 hover:text-primary font-medium" lang="ms">Laman Utama</a>
+                
+                <a href="#about-us" class="text-gray-700 hover:text-primary font-medium" lang="zh">关于</a>
+                <a href="#about-us" class="text-gray-700 hover:text-primary font-medium" lang="en">About</a>
+                <a href="#about-us" class="text-gray-700 hover:text-primary font-medium" lang="ms">Tentang</a>
+                
+                <a href="#services" class="text-gray-700 hover:text-primary font-medium" lang="zh">服务</a>
+                <a href="#services" class="text-gray-700 hover:text-primary font-medium" lang="en">Services</a>
+                <a href="#services" class="text-gray-700 hover:text-primary font-medium" lang="ms">Perkhidmatan</a>
+                
+                <a href="#platforms" class="text-gray-700 hover:text-primary font-medium" lang="zh">平台</a>
+                <a href="#platforms" class="text-gray-700 hover:text-primary font-medium" lang="en">Platforms</a>
+                <a href="#platforms" class="text-gray-700 hover:text-primary font-medium" lang="ms">Platform</a>
+                
+                <a href="#our-clients" class="text-gray-700 hover:text-primary font-medium" lang="zh">客户</a>
+                <a href="#our-clients" class="text-gray-700 hover:text-primary font-medium" lang="en">Clients</a>
+                <a href="#our-clients" class="text-gray-700 hover:text-primary font-medium" lang="ms">Klien</a>
+                
+                <a href="#testimonials" class="text-gray-700 hover:text-primary font-medium" lang="zh">评价</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-primary font-medium" lang="en">Testimonials</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-primary font-medium" lang="ms">Testimoni</a>
+                
+                <a href="#cases" class="text-gray-700 hover:text-primary font-medium" lang="zh">案例</a>
+                <a href="#cases" class="text-gray-700 hover:text-primary font-medium" lang="en">Cases</a>
+                <a href="#cases" class="text-gray-700 hover:text-primary font-medium" lang="ms">Kes</a>
+                
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium" lang="zh">联系我们</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium" lang="en">Contact Us</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium" lang="ms">Hubungi Kami</a>
+            </nav>
+
+            <!-- 添加移动端导航菜单 -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 hover:text-primary">
+                    <i class="ri-menu-line text-2xl"></i>
+                </button>
+                
+                <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-50">
+                    <div class="flex justify-end p-4">
+                        <button id="close-mobile-menu" class="text-gray-700 hover:text-primary">
+                            <i class="ri-close-line text-2xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flex flex-col items-center space-y-4 p-4">
+                        <a href="#" class="text-gray-700 hover:text-primary font-medium py-2" lang="zh">首页</a>
+                        <a href="#" class="text-gray-700 hover:text-primary font-medium py-2" lang="en">Home</a>
+                        <a href="#" class="text-gray-700 hover:text-primary font-medium py-2" lang="ms">Laman Utama</a>
+                        
+                        <a href="#about-us" class="text-gray-700 hover:text-primary font-medium py-2" lang="zh">关于</a>
+                        <a href="#about-us" class="text-gray-700 hover:text-primary font-medium py-2" lang="en">About</a>
+                        <a href="#about-us" class="text-gray-700 hover:text-primary font-medium py-2" lang="ms">Tentang</a>
+                        
+                        <a href="#services" class="text-gray-700 hover:text-primary font-medium py-2" lang="zh">服务</a>
+                        <a href="#services" class="text-gray-700 hover:text-primary font-medium py-2" lang="en">Services</a>
+                        <a href="#services" class="text-gray-700 hover:text-primary font-medium py-2" lang="ms">Perkhidmatan</a>
+                        
+                        <a href="#platforms" class="text-gray-700 hover:text-primary font-medium py-2" lang="zh">平台</a>
+                        <a href="#platforms" class="text-gray-700 hover:text-primary font-medium py-2" lang="en">Platforms</a>
+                        <a href="#platforms" class="text-gray-700 hover:text-primary font-medium py-2" lang="ms">Platform</a>
+                        
+                        <a href="#our-clients" class="text-gray-700 hover:text-primary font-medium py-2" lang="zh">客户</a>
+                        <a href="#our-clients" class="text-gray-700 hover:text-primary font-medium py-2" lang="en">Clients</a>
+                        <a href="#our-clients" class="text-gray-700 hover:text-primary font-medium py-2" lang="ms">Klien</a>
+                        
+                        <a href="#testimonials" class="text-gray-700 hover:text-primary font-medium py-2" lang="zh">评价</a>
+                        <a href="#testimonials" class="text-gray-700 hover:text-primary font-medium py-2" lang="en">Testimonials</a>
+                        <a href="#testimonials" class="text-gray-700 hover:text-primary font-medium py-2" lang="ms">Testimoni</a>
+                        
+                        <a href="#cases" class="text-gray-700 hover:text-primary font-medium py-2" lang="zh">案例</a>
+                        <a href="#cases" class="text-gray-700 hover:text-primary font-medium py-2" lang="en">Cases</a>
+                        <a href="#cases" class="text-gray-700 hover:text-primary font-medium py-2" lang="ms">Kes</a>
+                        
+                        <a href="#contact" class="text-gray-700 hover:text-primary font-medium py-2" lang="zh">联系我们</a>
+                        <a href="#contact" class="text-gray-700 hover:text-primary font-medium py-2" lang="en">Contact Us</a>
+                        <a href="#contact" class="text-gray-700 hover:text-primary font-medium py-2" lang="ms">Hubungi Kami</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- 语言切换按钮 -->
+                <div class="relative mr-4">
+                    <button id="language-button" class="flex items-center space-x-2 text-sm px-3 py-2 rounded hover:bg-gray-100 font-medium">
+                        <span id="current-language">
+                            {{ if eq .Site.Language.Lang "zh" }}中文{{ else if eq .Site.Language.Lang "en" }}English{{ else }}Melayu{{ end }}
+                        </span>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </button>
+                    <div id="language-dropdown" class="hidden absolute top-full right-0 mt-1 bg-white rounded shadow-lg py-2 w-24 z-50">
+                        <button onclick="changeLanguage('zh')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">中文</button>
+                        <button onclick="changeLanguage('en')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">English</button>
+                        <button onclick="changeLanguage('ms')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Melayu</button>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="bg-primary text-white px-5 py-2 rounded-button hover:bg-opacity-90 transition whitespace-nowrap" lang="zh">联系我们</button>
+                <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="bg-primary text-white px-5 py-2 rounded-button hover:bg-opacity-90 transition whitespace-nowrap" lang="en">Contact Us</button>
+                <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="bg-primary text-white px-5 py-2 rounded-button hover:bg-opacity-90 transition whitespace-nowrap" lang="ms">Hubungi Kami</button>
+            </div>
+        </div>
+    </header>
+    
+    {{ block "main" . }}{{ end }}
+    
+    {{ block "footer" . }}
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 公司信息 -->
+                <div>
+                    <a href="{{ .Site.BaseURL }}" class="inline-block mb-4">
+                        <img src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}" class="h-10 bg-white p-1 rounded">
+                    </a>
+                    <p class="text-gray-400 mb-6" lang="zh">Full Network Advertising 是总部位于Klang的马来西亚领先数字营销机构，专业服务吉隆坡、雪兰莪及全马来西亚地区。我们深耕本地市场，为品牌提供创新、高效的数字营销解决方案。</p>
+                    <p class="text-gray-400 mb-6" lang="en">Full Network Advertising is a leading digital marketing agency in Malaysia, headquartered in Klang and professionally serving Kuala Lumpur, Selangor, and nationwide. We specialize in local market expertise, providing innovative and effective digital marketing solutions for brands.</p>
+                    <p class="text-gray-400 mb-6" lang="ms">Full Network Advertising adalah agensi pemasaran digital terkemuka di Malaysia yang beribu pejabat di Klang, melayani Kuala Lumpur, Selangor dan seluruh Malaysia secara profesional. Kami pakar dalam pasaran tempatan, menyediakan penyelesaian pemasaran digital yang inovatif dan berkesan untuk jenama.</p>
+                    <div class="flex space-x-4">
+                        <a href="{{ .Site.Params.social.facebook }}" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-facebook-fill text-xl"></i>
+                        </a>
+                        <a href="{{ .Site.Params.social.instagram }}" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-instagram-fill text-xl"></i>
+                        </a>
+                        <a href="{{ .Site.Params.social.whatsapp }}" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-whatsapp-fill text-xl"></i>
+                        </a>
+                        <a href="{{ .Site.Params.social.telegram }}" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-telegram-fill text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 快速链接 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">{{ i18n "quickLinks" }}</h3>
+                    <ul class="space-y-2">
+                        <li><a href="{{ .Site.BaseURL }}" class="text-gray-400 hover:text-white transition">{{ i18n "home" }}</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">{{ i18n "aboutUs" }}</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">{{ i18n "services" }}</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">{{ i18n "contact" }}</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 联系信息 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">{{ i18n "contactInfo" }}</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">83-2, Jalan Mahogani 5/KS7, Bandar Botanic, 41200, Klang, Selangor, Malaysia</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ri-mail-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">fullnetwork63@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ri-phone-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">+60 14-663 2896</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. {{ i18n "allRightsReserved" }}</p>
+            </div>
+        </div>
+    </footer>
+    {{ end }}
+    
+    {{ block "scripts" . }}
+    <!-- 添加语言切换脚本 -->
+    <script>
+    // 语言切换函数 - 更新版本
+    function changeLanguage(lang) {
+      // 保存语言选择到本地存储
+      localStorage.setItem('preferredLanguage', lang);
+      
+      // 获取当前 URL
+      const currentUrl = window.location.href;
+      const currentPath = window.location.pathname;
+      
+      // 检查当前路径是否已经包含语言代码
+      const langRegex = /^\/(zh|en|ms)\//;
+      let newPath;
+      
+      if (langRegex.test(currentPath)) {
+        // 替换现有语言代码
+        newPath = currentPath.replace(langRegex, '/' + lang + '/');
+      } else {
+        // 添加语言代码
+        newPath = '/' + lang + '/';
+      }
+      
+      // 构建完整的新 URL
+      const newUrl = window.location.protocol + '//' + window.location.host + newPath + window.location.search;
+      
+      // 跳转到新 URL
+      window.location.href = newUrl;
+      
+      console.log('Language changed to:', lang, 'New URL:', newUrl);
+    }
+
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取语言按钮和下拉菜单
+      const languageButton = document.getElementById('language-button');
+      const languageDropdown = document.getElementById('language-dropdown');
+      
+      // 点击语言按钮时切换下拉菜单显示状态
+      if (languageButton && languageDropdown) {
+        languageButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          languageDropdown.classList.toggle('hidden');
+        });
+        
+        // 点击页面其他地方时隐藏下拉菜单
+        document.addEventListener('click', function(event) {
+          if (languageButton && languageDropdown && !languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+            languageDropdown.classList.add('hidden');
+          }
+        });
+      }
+      
+      // 应用保存的语言偏好（仅在本地测试时）
+      if (window.location.hostname === 'localhost') {
+        const savedLang = localStorage.getItem('preferredLanguage');
+        if (savedLang) {
+          // 仅在本地测试环境中使用 CSS 切换
+          const body = document.getElementById('main-body');
+          if (body) {
+            body.classList.remove('lang-zh', 'lang-en', 'lang-ms');
+            body.classList.add(`lang-${savedLang}`);
+          }
+        }
+      }
+    });
+    </script>
+    <!-- 添加 Web Vitals 监控 -->
+    <script>
+      // 简单的性能监控
+      window.addEventListener('load', function() {
+        // 获取并记录关键性能指标
+        setTimeout(function() {
+          if (window.performance) {
+            const perfData = window.performance.timing;
+            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+            console.log('Page load time:', pageLoadTime + 'ms');
+            
+            // 这里可以添加发送到分析服务的代码
+          }
+        }, 0);
+      });
+    </script>
+    {{ end }}
+</body>
+</html>
+<!-- 添加结构化数据 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness", "AdvertisingAgency"],
+  "name": "Full Network Advertising",
+  "alternateName": "FullNetwork Advertising",
+  "url": "https://www.fullnetworkads.com",
+  "logo": "https://www.fullnetworkads.com/images/logo.png",
+  "description": "Leading digital marketing agency in Malaysia, headquartered in Klang, Selangor. Specializing in SEO, social media marketing, and comprehensive digital solutions.",
+  "foundingDate": "2021",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "{{ .Site.Params.phone }}",
+    "contactType": "customer service",
+    "availableLanguage": ["zh-CN", "en", "ms"],
+    "areaServed": ["Klang", "Selangor", "Kuala Lumpur", "Malaysia"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Klang",
+    "addressRegion": "Selangor",
+    "addressCountry": "MY"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "3.0444",
+    "longitude": "101.4457"
+  },
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "3.0444",
+      "longitude": "101.4457"
+    },
+    "geoRadius": "50000"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Digital Marketing Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "SEO Malaysia",
+          "description": "Search Engine Optimization services for Malaysian businesses"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Social Media Marketing",
+          "description": "Comprehensive social media management and advertising"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Digital Advertising",
+          "description": "Google Ads and Facebook advertising campaigns"
+        }
+      }
+    ]
+  },
+  "sameAs": [
+    "{{ .Site.Params.facebook }}",
+    "{{ .Site.Params.instagram }}",
+    "{{ .Site.Params.linkedin }}"
+  ]
+}
+</script>

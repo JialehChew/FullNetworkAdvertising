@@ -1,0 +1,162 @@
+<!-- 组织信息 Schema.org 标记 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ "images/logo.png" | absURL }}",
+  "image": "{{ "images/hero-bg.jpg" | absURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ index (split .Site.Params.address ",") 0 }}",
+    "addressLocality": "{{ index (split .Site.Params.address ",") 1 }}",
+    "addressRegion": "{{ index (split .Site.Params.address ",") 2 }}",
+    "postalCode": "{{ index (split .Site.Params.address ",") 3 }}",
+    "addressCountry": "MY"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "3.0095",
+    "longitude": "101.4200"
+  },
+  "telephone": "{{ .Site.Params.phone }}",
+  "email": "{{ .Site.Params.email }}",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "sameAs": [
+    "{{ .Site.Params.social.facebook }}",
+    "{{ .Site.Params.social.instagram }}",
+    "{{ .Site.Params.social.whatsapp }}",
+    "{{ .Site.Params.social.telegram }}"
+  ],
+  "priceRange": "$$",
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "3.0095",
+      "longitude": "101.4200"
+    },
+    "geoRadius": "50000"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Digital Marketing Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "社交媒体营销",
+          "description": "专业的社交媒体内容创作和营销策略"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "搜索引擎优化",
+          "description": "提高您网站在搜索引擎中的排名"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "品牌策划",
+          "description": "全方位的品牌形象设计和策划"
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<!-- 网站信息 Schema.org 标记 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "{{ .Site.BaseURL }}",
+  "name": "{{ .Site.Title }}",
+  "description": "{{ .Site.Params.description }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- 面包屑导航 Schema.org 标记 (仅在非首页显示) -->
+{{ if not .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ .Site.Title }}",
+      "item": "{{ .Site.BaseURL }}"
+    }
+    {{ if .Section }}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ .Section | humanize }}",
+      "item": "{{ .Site.BaseURL }}{{ .Section }}/"
+    }
+    {{ end }}
+    {{ if not .IsSection }}
+    ,{
+      "@type": "ListItem",
+      "position": {{ if .Section }}3{{ else }}2{{ end }},
+      "name": "{{ .Title }}",
+      "item": "{{ .Permalink }}"
+    }
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}
+
+<!-- 文章信息 Schema.org 标记 (仅在文章页面显示) -->
+{{ if and .IsPage (eq .Section "blog") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+  "image": "{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ "images/default-blog.jpg" | absURL }}{{ end }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ "images/logo.png" | absURL }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+{{ end }}
