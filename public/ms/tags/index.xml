@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Full Network Advertising - Penyelesaian Pemasaran Digital Komprehensif</title>
-    <link>http://localhost:1313/ms/tags/</link>
+    <link>https://www.fullnetworkads.com/ms/tags/</link>
     <description>Recent content in Tags on Full Network Advertising - Penyelesaian Pemasaran Digital Komprehensif</description>
     <generator>Hugo</generator>
     <language>ms</language>
-    <atom:link href="http://localhost:1313/ms/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.fullnetworkads.com/ms/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
