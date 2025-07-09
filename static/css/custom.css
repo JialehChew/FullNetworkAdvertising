@@ -6,9 +6,9 @@ body {
 }
 
 .hero-section {
-  background-image: url('/images/hero-bg.jpg') !important;
+  background-image: url('/images/hero-bg.png') !important; /* 修改扩展名为 .png */
   background-size: cover !important;
-  background-position: center right !important;
+  background-position: center center !important; /* 可以调整为: top center, bottom center, center left 等 */
   position: relative !important;
 }
 
@@ -209,6 +209,8 @@ body.lang-ms [lang="ms"] {
 #contact .ri-telegram-fill {
   font-size: 1.25rem;
 }
+
+
 
 
 

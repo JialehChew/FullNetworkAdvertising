@@ -40,7 +40,7 @@
       
       /* 强制移除 Hero 部分背景图片的渐变色，保留原始图片 */
       .hero-section {
-        background-image: url('/images/hero-bg.jpg') !important;
+        background-image: url('/images/hero-bg.png') !important;
         background-size: cover !important;
         background-position: center right !important;
         position: relative !important;
@@ -187,7 +187,7 @@
       "name": "{{ .Site.Title }}",
       "url": "{{ .Site.BaseURL }}",
       "logo": "{{ "images/logo.png" | absURL }}",
-      "image": "{{ "images/hero-bg.jpg" | absURL }}",
+      "image": "{{ "images/hero-bg.png" | absURL }}",
       {{ if eq .Site.Language.Lang "zh" }}
       "description": "Full Network Advertising 是马来西亚领先的数字营销公司，专注于社交媒体营销、SEO 优化、品牌策划和内容创作。",
       {{ else if eq .Site.Language.Lang "en" }}
@@ -463,6 +463,11 @@
     
     {{ block "main" . }}{{ end }}
     
+    <!-- 添加悬浮 WhatsApp 按钮 -->
+    <a href="https://bit.ly/ClickToWhatApp" target="_blank" class="fixed bottom-6 right-6 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors z-50">
+      <i class="ri-whatsapp-fill text-3xl" style="color: white !important;"></i>
+    </a>
+    
     {{ block "footer" . }}
     <!-- 页脚 -->
     <footer class="bg-gray-900 text-white py-12">
@@ -692,3 +697,5 @@
   ]
 }
 </script>
+
+
