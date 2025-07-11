@@ -3,38 +3,38 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://localhost:1313/en/</loc>
+    <loc>https://www.fullnetworkads.com/en/</loc>
     <lastmod>2023-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     
-    <xhtml:link rel="alternate" hreflang="zh" href="http://localhost:1313/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.fullnetworkads.com/"/>
     
-    <xhtml:link rel="alternate" hreflang="ms" href="http://localhost:1313/ms/"/>
-    
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/en/categories/</loc>
-    <lastmod>0001-01-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    
-    <xhtml:link rel="alternate" hreflang="zh" href="http://localhost:1313/categories/"/>
-    
-    <xhtml:link rel="alternate" hreflang="ms" href="http://localhost:1313/ms/categories/"/>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://www.fullnetworkads.com/ms/"/>
     
   </url>
   
   <url>
-    <loc>http://localhost:1313/en/tags/</loc>
+    <loc>https://www.fullnetworkads.com/en/categories/</loc>
     <lastmod>0001-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
-    <xhtml:link rel="alternate" hreflang="zh" href="http://localhost:1313/tags/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.fullnetworkads.com/categories/"/>
     
-    <xhtml:link rel="alternate" hreflang="ms" href="http://localhost:1313/ms/tags/"/>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://www.fullnetworkads.com/ms/categories/"/>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.fullnetworkads.com/en/tags/</loc>
+    <lastmod>0001-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.fullnetworkads.com/tags/"/>
+    
+    <xhtml:link rel="alternate" hreflang="ms" href="https://www.fullnetworkads.com/ms/tags/"/>
     
   </url>
   
