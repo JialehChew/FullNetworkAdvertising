@@ -1,1 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>https://www.fullnetworkads.com/ms/</loc><lastmod>2023-05-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority><xhtml:link rel="alternate" hreflang="zh" href="https://www.fullnetworkads.com/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.fullnetworkads.com/en/"/></url><url><loc>https://www.fullnetworkads.com/ms/categories/</loc><lastmod>0001-01-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><xhtml:link rel="alternate" hreflang="zh" href="https://www.fullnetworkads.com/categories/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.fullnetworkads.com/en/categories/"/></url><url><loc>https://www.fullnetworkads.com/ms/tags/</loc><lastmod>0001-01-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><xhtml:link rel="alternate" hreflang="zh" href="https://www.fullnetworkads.com/tags/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.fullnetworkads.com/en/tags/"/></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://localhost:1313/ms/</loc>
+    <lastmod>2023-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    
+    <xhtml:link rel="alternate" hreflang="zh" href="http://localhost:1313/"/>
+    
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/"/>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/ms/categories/</loc>
+    <lastmod>0001-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    
+    <xhtml:link rel="alternate" hreflang="zh" href="http://localhost:1313/categories/"/>
+    
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/categories/"/>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/ms/tags/</loc>
+    <lastmod>0001-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    
+    <xhtml:link rel="alternate" hreflang="zh" href="http://localhost:1313/tags/"/>
+    
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/tags/"/>
+    
+  </url>
+  
+</urlset>
+
+

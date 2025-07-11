@@ -317,7 +317,7 @@
     
     <header class="bg-white shadow-sm fixed w-full z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="http://localhost:1313/" class="flex items-center">
+            <a href="#" class="flex items-center">
                 <img src="http://localhost:1313/images/logo.png" alt="Full Network Advertising - Comprehensive Digital Marketing Solutions Logo" class="h-12">
             </a>
             <nav class="hidden md:flex space-x-8">
@@ -426,44 +426,103 @@
     
     
   
-  <script>
-    
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+<section class="hero-section pt-24 pb-16 min-h-[600px] flex items-center">
+  <div class="container mx-auto px-4 w-full">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 hero-text" lang="zh">全方位网络营销解决方案｜马来西亚广告与数字营销专家</h1>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 hero-text" lang="en">Comprehensive Digital Marketing Solutions | Advertising Agency in Malaysia</h1>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 hero-text" lang="ms">Penyelesaian Pemasaran Digital Komprehensif | Agensi Pengiklanan Malaysia</h1>
       
-      var storedLang = localStorage.getItem('preferredLanguage');
+      <p class="text-lg text-gray-700 mb-8 hero-text" lang="zh">我们是总部位于马来西亚雪兰莪Klang的专业广告公司，专注提供数字营销与线上推广服务。我们为中小企业量身打造涵盖社交媒体管理、搜索引擎优化（SEO）、广告投放与内容创作的整合营销方案，助力品牌在马来西亚市场中脱颖而出。</p>
+      <p class="text-lg text-gray-700 mb-8 hero-text" lang="en">We are a trusted <strong>digital marketing and advertising agency</strong> based in Klang, Selangor, Malaysia. Our team provides tailored solutions for SMEs, including social media marketing, SEO Malaysia services, content creation, and strategic online advertising campaigns to help your brand grow and thrive in the competitive digital landscape.</p>
+      <p class="text-lg text-gray-700 mb-8 hero-text" lang="ms">Kami adalah <strong>agensi pengiklanan digital yang dipercayai</strong> yang berpangkalan di Klang, Selangor, Malaysia. Kami menyediakan penyelesaian disesuaikan untuk PKS, termasuk pemasaran media sosial, perkhidmatan SEO Malaysia, penciptaan kandungan, dan kempen pengiklanan digital yang strategik untuk membantu jenama anda berkembang di pasaran digital yang kompetitif.</p>
       
-      
-      if (storedLang && ['zh', 'en', 'ms'].indexOf(storedLang) !== -1) {
-        window.location.href = '/' + storedLang + '/';
-      } else {
+      <div class="flex flex-wrap gap-4">
+        <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-[16px] hover:bg-opacity-90 transition" lang="zh">免费咨询</a>
+        <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-[16px] hover:bg-opacity-90 transition" lang="en">Free Consultation</a>
+        <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-[16px] hover:bg-opacity-90 transition" lang="ms">Perundingan Percuma</a>
+      </div>
+
+      <div class="flex justify-between items-center mt-8 mb-12 max-w-lg">
+        <div class="text-center">
+          <div class="text-blue-600 text-3xl md:text-4xl font-bold mb-1">
+            <span id="client-counter">500</span>+
+          </div>
+          <p class="stats-text" lang="zh">满意客户</p>
+          <p class="stats-text" lang="en">Happy Clients</p>
+          <p class="stats-text" lang="ms">Pelanggan Gembira</p>
+        </div>
         
-        window.location.href = '/zh/';
-      }
-    }
-  </script>
-
-
-    
-  <div class="hero-section">
-    <img src="http://localhost:1313/images/hero-bg.jpg" alt="Hero Background" class="hidden">
-  </div>
-
-
-  
-  <section class="hero-section pt-24 pb-16 min-h-[600px] flex items-center">
-    <div class="container mx-auto px-4 w-full">
-      <div class="max-w-2xl">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Comprehensive Network Marketing Solutions</h1>
-        <p class="text-lg text-gray-600 mb-8">We provide professional network marketing services to help your business stand out in the digital age. From social media management to search engine optimization, our team will customize the most suitable marketing strategy for you.</p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-button hover:bg-opacity-90 transition">Contact Us</a>
-          <a href="#services" class="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-button hover:bg-gray-50 transition">Our Services</a>
+        <div class="text-center">
+          <div class="text-indigo-600 text-3xl md:text-4xl font-bold mb-1">
+            <span id="roi-counter">3.5</span>x
+          </div>
+          <p class="stats-text" lang="zh">投资回报率提升</p>
+          <p class="stats-text" lang="en">ROI Boost</p>
+          <p class="stats-text" lang="ms">Peningkatan ROI</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="text-purple-600 text-3xl md:text-4xl font-bold mb-1">
+            <span id="satisfaction-counter">99</span>%
+          </div>
+          <p class="stats-text" lang="zh">客户满意度</p>
+          <p class="stats-text" lang="en">Satisfaction Rate</p>
+          <p class="stats-text" lang="ms">Kadar Kepuasan</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
   
   
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      function animateValue(id, start, end, duration) {
+        const obj = document.getElementById(id);
+        if (!obj) return;
+        
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const isDecimal = end % 1 !== 0;
+          const value = progress * (end - start) + start;
+          
+          obj.innerHTML = isDecimal ? value.toFixed(1) : Math.floor(value);
+          
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            obj.innerHTML = isDecimal ? end.toFixed(1) : end;
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+      
+      
+      animateValue("client-counter", 0, 500, 2000);
+      animateValue("roi-counter", 0, 3.5, 2000);
+      animateValue("satisfaction-counter", 0, 99, 2000);
+    });
+  </script>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 <section id="about-us" class="py-16 bg-gray-50">
   <div class="container mx-auto px-4">
@@ -688,6 +747,368 @@
 
 
   
+<section id="platforms" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="zh">投放平台</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="en">PLATFORMS</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="ms">PLATFORM</span>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="zh">全网覆盖，精准触达</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="en">Full Network Coverage, Precise Reach</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="ms">Liputan Rangkaian Penuh, Jangkauan Tepat</h2>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="zh">我们与各大主流平台深度合作，覆盖全网用户群体，精准触达您的目标受众</p>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="en">We collaborate deeply with major mainstream platforms, covering the entire network user base and precisely reaching your target audience</p>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="ms">Kami bekerjasama secara mendalam dengan platform utama, meliputi seluruh pangkalan pengguna rangkaian dan mencapai audiens sasaran anda dengan tepat</p>
+    </div>
+
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      
+      <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+        <div class="flex justify-center mb-4">
+          <img src="http://localhost:1313/images/platforms/facebook.png" alt="Facebook" class="h-12">
+        </div>
+        <h3 class="text-lg font-medium text-gray-800 mb-2">Facebook</h3>
+        <p class="text-gray-600 text-sm" lang="zh">全球最大的社交平台，适合精准广告投放与品牌传播，有效提升品牌的社交影响力与用户触达率。</p>
+        <p class="text-gray-600 text-sm" lang="en">The world's largest social platform, ideal for precise ad targeting and brand exposure, effectively enhancing brand visibility and user reach.</p>
+        <p class="text-gray-600 text-sm" lang="ms">Platform sosial terbesar di dunia, sesuai untuk sasaran iklan yang tepat dan pendedahan jenama, meningkatkan kebolehlihatan jenama dan jangkauan pengguna dengan berkesan.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+        <div class="flex justify-center mb-4">
+          <img src="http://localhost:1313/images/platforms/tiktok.png" alt="TikTok" class="h-12">
+        </div>
+        <h3 class="text-lg font-medium text-gray-800 mb-2">TikTok</h3>
+        <p class="text-gray-600 text-sm" lang="zh">高速成长的短视频平台，通过创意视频与挑战赛快速引爆流量，深受年轻用户喜爱，提升互动率与品牌话题度。</p>
+        <p class="text-gray-600 text-sm" lang="en">A rapidly growing short video platform that uses creative content and viral challenges to drive traffic and engagement among younger audiences.</p>
+        <p class="text-gray-600 text-sm" lang="ms">Platform video pendek yang berkembang pesat, menggunakan kandungan kreatif dan cabaran tular untuk menjana trafik serta menarik minat golongan muda.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+        <div class="flex justify-center mb-4">
+          <img src="http://localhost:1313/images/platforms/xiaohongshu.png" alt="小红书" class="h-12">
+        </div>
+        <h3 class="text-lg font-medium text-gray-800 mb-2">小红书</h3>
+        <p class="text-gray-600 text-sm" lang="zh">以"真实种草"为核心的内容社区，透过KOL与真实用户分享，打造高转化的口碑传播路径。</p>
+        <p class="text-gray-600 text-sm" lang="en">A lifestyle content platform centered around authentic user experiences and word-of-mouth marketing through KOL collaboration.</p>
+        <p class="text-gray-600 text-sm" lang="ms">Platform kandungan gaya hidup yang berpusat pada pengalaman pengguna autentik dan pemasaran dari mulut ke mulut melalui kolaborasi KOL.</p>
+      </div>
+
+      
+      <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+        <div class="flex justify-center mb-4">
+          <img src="http://localhost:1313/images/platforms/instagram.png" alt="Instagram" class="h-12">
+        </div>
+        <h3 class="text-lg font-medium text-gray-800 mb-2">Instagram</h3>
+        <p class="text-gray-600 text-sm" lang="zh">图片与短视频分享平台，通过精美视觉内容吸引用户，适合时尚、美妆、生活方式等品牌推广。</p>
+        <p class="text-gray-600 text-sm" lang="en">Image and short video sharing platform that attracts users through beautiful visual content, suitable for fashion, beauty, lifestyle and other brand promotions.</p>
+        <p class="text-gray-600 text-sm" lang="ms">Platform perkongsian imej dan video pendek yang menarik pengguna melalui kandungan visual yang cantik, sesuai untuk promosi jenama fesyen, kecantikan, gaya hidup dan lain-lain.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+        <div class="flex justify-center mb-4">
+          <img src="http://localhost:1313/images/platforms/whatsapp.png" alt="WhatsApp" class="h-12">
+        </div>
+        <h3 class="text-lg font-medium text-gray-800 mb-2">WhatsApp</h3>
+        <p class="text-gray-600 text-sm" lang="zh">全球流行的即时通讯应用，支持一对一营销和群组推广，建立私域流量池，实现高效客户沟通与转化。</p>
+        <p class="text-gray-600 text-sm" lang="en">A globally popular instant messaging app that supports one-on-one marketing and group promotions, building private domain traffic and achieving efficient customer communication and conversion.</p>
+        <p class="text-gray-600 text-sm" lang="ms">Aplikasi pesanan segera yang popular di seluruh dunia yang menyokong pemasaran satu-ke-satu dan promosi kumpulan, membina trafik domain peribadi dan mencapai komunikasi dan penukaran pelanggan yang cekap.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+        <div class="flex justify-center mb-4">
+          <img src="http://localhost:1313/images/platforms/youtube.png" alt="YouTube" class="h-12">
+        </div>
+        <h3 class="text-lg font-medium text-gray-800 mb-2">YouTube</h3>
+        <p class="text-gray-600 text-sm" lang="zh">全球最大的视频平台，通过优质内容和精准广告投放，提升品牌知名度，获取长期稳定的流量与粉丝。</p>
+        <p class="text-gray-600 text-sm" lang="en">The world's largest video platform, enhancing brand awareness through quality content and precise ad placement, gaining long-term stable traffic and followers.</p>
+        <p class="text-gray-600 text-sm" lang="ms">Platform video terbesar di dunia, meningkatkan kesedaran jenama melalui kandungan berkualiti dan penempatan iklan yang tepat, mendapatkan trafik dan pengikut yang stabil jangka panjang.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+<section id="success-cases" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="zh">成功案例</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="en">SUCCESS CASES</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="ms">KES KEJAYAAN</span>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="zh">我们的营销成果</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="en">Our Marketing Results</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="ms">Hasil Pemasaran Kami</h2>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="zh">通过专业的营销策略与执行力，我们帮助客户实现业务增长与品牌提升</p>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="en">Through professional marketing strategies and execution, we help clients achieve business growth and brand enhancement</p>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="ms">Melalui strategi pemasaran dan pelaksanaan profesional, kami membantu klien mencapai pertumbuhan perniagaan dan peningkatan jenama</p>
+    </div>
+
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="mb-4">
+          <img src="http://localhost:1313/images/cases/restaurant.png" alt="餐饮行业客户" class="w-full h-40 object-cover rounded">
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="zh">餐饮行业</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="en">Food & Beverage Industry</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="ms">Industri Makanan & Minuman</h3>
+        <p class="text-gray-600 mb-4" lang="zh">帮助一家连锁餐厅通过社交媒体营销提升品牌知名度，增加客流量30%，实现线上订单量显著增长。</p>
+        <p class="text-gray-600 mb-4" lang="en">Helped a chain restaurant increase brand awareness through social media marketing, increasing customer traffic by 30% and achieving significant growth in online orders.</p>
+        <p class="text-gray-600 mb-4" lang="ms">Membantu restoran berantai meningkatkan kesedaran jenama melalui pemasaran media sosial, meningkatkan trafik pelanggan sebanyak 30% dan mencapai pertumbuhan ketara dalam pesanan dalam talian.</p>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500" lang="zh">投放平台: Facebook, Instagram</span>
+          <span class="text-gray-500" lang="en">Platforms: Facebook, Instagram</span>
+          <span class="text-gray-500" lang="ms">Platform: Facebook, Instagram</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="mb-4">
+          <img src="http://localhost:1313/images/cases/property.png" alt="房地产行业客户" class="w-full h-40 object-cover rounded">
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="zh">房地产行业</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="en">Real Estate Industry</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="ms">Industri Hartanah</h3>
+        <p class="text-gray-600 mb-4" lang="zh">为某房地产开发商设计整合营销方案，通过精准定位与多渠道推广，实现楼盘销售率提升25%。</p>
+        <p class="text-gray-600 mb-4" lang="en">Designed an integrated marketing solution for a real estate developer, achieving a 25% increase in property sales through precise targeting and multi-channel promotion.</p>
+        <p class="text-gray-600 mb-4" lang="ms">Merancang penyelesaian pemasaran bersepadu untuk pemaju hartanah, mencapai peningkatan 25% dalam jualan hartanah melalui sasaran tepat dan promosi pelbagai saluran.</p>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500" lang="zh">投放平台: Google, Facebook</span>
+          <span class="text-gray-500" lang="en">Platforms: Google, Facebook</span>
+          <span class="text-gray-500" lang="ms">Platform: Google, Facebook</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="mb-4">
+          <img src="http://localhost:1313/images/cases/facial.png" alt="美容行业客户" class="w-full h-40 object-cover rounded">
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="zh">美容行业</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="en">Beauty Industry</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="ms">Industri Kecantikan</h3>
+        <p class="text-gray-600 mb-4" lang="zh">协助一家美容沙龙通过精准的社交媒体广告投放，吸引新客户，预约率提升50%，客户留存率显著提高。</p>
+        <p class="text-gray-600 mb-4" lang="en">Assisted a beauty salon through precise social media advertising, attracting new customers, increasing appointment rates by 50%, and significantly improving customer retention.</p>
+        <p class="text-gray-600 mb-4" lang="ms">Membantu salon kecantikan melalui pengiklanan media sosial yang tepat, menarik pelanggan baru, meningkatkan kadar temujanji sebanyak 50%, dan meningkatkan pengekalan pelanggan dengan ketara.</p>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500" lang="zh">投放平台: Instagram, Facebook</span>
+          <span class="text-gray-500" lang="en">Platforms: Instagram, Facebook</span>
+          <span class="text-gray-500" lang="ms">Platform: Instagram, Facebook</span>
+        </div>
+      </div>
+
+      
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="mb-4">
+          <img src="http://localhost:1313/images/cases/education.png" alt="教育行业客户" class="w-full h-40 object-cover rounded">
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="zh">教育行业</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="en">Education Industry</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="ms">Industri Pendidikan</h3>
+        <p class="text-gray-600 mb-4" lang="zh">为某国际教育机构打造品牌营销策略，通过内容营销与社交媒体运营，提升品牌知名度，增加招生咨询量45%。</p>
+        <p class="text-gray-600 mb-4" lang="en">Created a brand marketing strategy for an international educational institution, increasing brand awareness and enrollment inquiries by 45% through content marketing and social media operations.</p>
+        <p class="text-gray-600 mb-4" lang="ms">Mencipta strategi pemasaran jenama untuk institusi pendidikan antarabangsa, meningkatkan kesedaran jenama dan pertanyaan pendaftaran sebanyak 45% melalui pemasaran kandungan dan operasi media sosial.</p>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500" lang="zh">投放平台: Instagram, LinkedIn</span>
+          <span class="text-gray-500" lang="en">Platforms: Instagram, LinkedIn</span>
+          <span class="text-gray-500" lang="ms">Platform: Instagram, LinkedIn</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="mb-4">
+          <img src="http://localhost:1313/images/cases/retail.png" alt="零售行业客户" class="w-full h-40 object-cover rounded">
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="zh">零售行业</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="en">Retail Industry</h3>
+        <h3 class="text-xl font-bold text-gray-800 mb-2" lang="ms">Industri Runcit</h3>
+        <p class="text-gray-600 mb-4" lang="zh">为一家时尚零售品牌策划社交媒体内容和广告活动，提升品牌形象，带动销售额增长40%。</p>
+        <p class="text-gray-600 mb-4" lang="en">Planned social media content and advertising campaigns for a fashion retail brand, enhancing brand image and driving a 40% increase in sales.</p>
+        <p class="text-gray-600 mb-4" lang="ms">Merancang kandungan media sosial dan kempen pengiklanan untuk jenama runcit fesyen, meningkatkan imej jenama dan mendorong peningkatan 40% dalam jualan.</p>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500" lang="zh">投放平台: TikTok, Instagram</span>
+          <span class="text-gray-500" lang="en">Platforms: TikTok, Instagram</span>
+          <span class="text-gray-500" lang="ms">Platform: TikTok, Instagram</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  
+<section id="our-clients" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="zh">我们的客户</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="en">OUR CLIENTS</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="ms">KLIEN KAMI</span>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="zh">值得信赖的合作伙伴</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="en">Trusted Partners</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="ms">Rakan Kongsi Dipercayai</h2>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="zh">我们与众多知名品牌建立了长期稳定的合作关系，为他们提供全方位的网络营销解决方案</p>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="en">We have established long-term stable cooperative relationships with many well-known brands, providing them with comprehensive network marketing solutions</p>
+      <p class="text-gray-600 max-w-3xl mx-auto mt-4" lang="ms">Kami telah menjalin hubungan kerjasama yang stabil jangka panjang dengan banyak jenama terkenal, menyediakan penyelesaian pemasaran rangkaian komprehensif untuk mereka</p>
+    </div>
+
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+      <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-32 hover:shadow-md transition-shadow">
+        <img src="http://localhost:1313/images/clients/logo1.jpg" alt="客户Logo 1" class="max-h-16">
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-32 hover:shadow-md transition-shadow">
+        <img src="http://localhost:1313/images/clients/logo2.png" alt="客户Logo 2" class="max-h-16">
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-32 hover:shadow-md transition-shadow">
+        <img src="http://localhost:1313/images/clients/logo3.png" alt="客户Logo 3" class="max-h-16">
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-32 hover:shadow-md transition-shadow">
+        <img src="http://localhost:1313/images/clients/logo4.jpg" alt="客户Logo 4" class="max-h-16">
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-32 hover:shadow-md transition-shadow">
+        <img src="http://localhost:1313/images/clients/logo5.png" alt="客户Logo 5" class="max-h-16">
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-32 hover:shadow-md transition-shadow">
+        <img src="http://localhost:1313/images/clients/logo6.jpg" alt="客户Logo 6" class="max-h-16">
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-32 hover:shadow-md transition-shadow">
+        <img src="http://localhost:1313/images/clients/logo7.png" alt="客户Logo 7" class="max-h-16">
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-32 hover:shadow-md transition-shadow">
+        <img src="http://localhost:1313/images/clients/logo8.jpg" alt="客户Logo 8" class="max-h-16">
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+<section id="testimonials" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="zh">客户评价</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="en">TESTIMONIALS</span>
+      <span class="text-primary text-sm font-medium uppercase tracking-wider" lang="ms">TESTIMONI</span>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="zh">客户的心声</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="en">Voice of Our Clients</h2>
+      <h2 class="text-3xl font-bold text-gray-800 mt-2" lang="ms">Suara Pelanggan Kami</h2>
+      <p class="text-gray-600 mt-4 max-w-3xl mx-auto" lang="zh">来自我们客户的真实评价，见证我们的服务质量与专业水平。</p>
+      <p class="text-gray-600 mt-4 max-w-3xl mx-auto" lang="en">Authentic reviews from our clients, testifying to our service quality and professional standards.</p>
+      <p class="text-gray-600 mt-4 max-w-3xl mx-auto" lang="ms">Ulasan autentik daripada pelanggan kami, membuktikan kualiti perkhidmatan dan standard profesional kami.</p>
+    </div>
+
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="http://localhost:1313/images/testimonials/testimonial1.png" alt="客户评价1" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="http://localhost:1313/images/testimonials/testimonial2.png" alt="客户评价2" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="http://localhost:1313/images/testimonials/testimonial3.png" alt="客户评价3" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="http://localhost:1313/images/testimonials/testimonial4.png" alt="客户评价4" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="http://localhost:1313/images/testimonials/testimonial5.png" alt="客户评价5" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-item cursor-pointer transform transition hover:scale-105">
+        <div class="bg-white p-3 rounded-2xl shadow-md relative">
+          
+          <div class="absolute -bottom-3 left-6 w-6 h-6 bg-white transform rotate-45 shadow-md z-0"></div>
+          <div class="relative z-10">
+            <img src="http://localhost:1313/images/testimonials/testimonial6.png" alt="客户评价6" class="w-full h-auto rounded-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="testimonial-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+      <div class="bg-white p-4 rounded-lg max-w-3xl max-h-[90vh] overflow-auto">
+        <div class="flex justify-end">
+          <button id="close-modal" class="text-gray-500 hover:text-gray-800">
+            <i class="ri-close-line text-2xl"></i>
+          </button>
+        </div>
+        <div class="p-2">
+          <img id="modal-image" src="" alt="放大的评价" class="w-full h-auto">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const testimonialItems = document.querySelectorAll('.testimonial-item');
+      const modal = document.getElementById('testimonial-modal');
+      const modalImage = document.getElementById('modal-image');
+      const closeModal = document.getElementById('close-modal');
+      
+      testimonialItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const imgSrc = this.querySelector('img').src;
+          modalImage.src = imgSrc;
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      
+      closeModal.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      });
+      
+      
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+  </script>
+</section>
+  
 <section id="contact" class="py-16 bg-gray-50">
   <div class="container mx-auto px-4">
     <div class="text-center mb-12">
@@ -752,91 +1173,71 @@
       </div>
 
       
-      <div class="mt-8 bg-white p-6 rounded-lg shadow-sm">
-        <div id="map-container" class="relative">
-          
-          <iframe 
-            id="google-map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.3730675175038!2d101.43493807576698!3d2.9937762000000077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4f11186a7a05%3A0xe3bb95f3d78ef7ec!2sFull%20Network%20Advertising%20Social%20Media%20Marketing!5e0!3m2!1sen!2smy!4v1746266293482!5m2!1sen!2smy" 
-            width="100%" 
-            height="350" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="eager" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          
-          
-          <div id="map-fallback" class="absolute inset-0 bg-gray-100 flex flex-col items-center justify-center" style="display:none;">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 mb-4">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <circle cx="8.5" cy="8.5" r="1.5"></circle>
-              <polyline points="21 15 16 10 5 21"></polyline>
-            </svg>
-            <p class="text-gray-600"></p>
-            <a href="https://www.google.com/maps?ll=2.9937762,101.4375175&z=15&t=m&hl=en&gl=MY&mapclient=embed&cid=16474756581869817836" target="_blank" class="mt-2 text-primary hover:underline"></a>
-          </div>
-        </div>
+<div class="w-full max-w-6xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-sm">
+  <div id="map-container" class="relative">
+    <iframe
+      id="google-map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.3730675175038!2d101.43493807576698!3d2.9937762000000077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4f11186a7a05%3A0xe3bb95f3d78ef7ec!2sFull%20Network%20Advertising%20Social%20Media%20Marketing!5e0!3m2!1sen!2smy!4v1746266293482!5m2!1sen!2smy"
+      width="100%"
+      height="350"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+
+    <noscript>
+      <div class="mt-4 text-center text-sm text-gray-600">
+        地图无法加载，<a href="https://www.google.com/maps?ll=2.9937762,101.4375175&z=15" target="_blank" class="text-blue-600 underline">点击此处在 Google 地图中查看</a>
       </div>
-    </div>
+    </noscript>
   </div>
+</div>
 </section>
 
-
 <script>
+(function() {
   function initMap() {
-    var iframe = document.getElementById('google-map');
-    var fallback = document.getElementById('map-fallback');
-    
+    const iframe = document.getElementById('google-map');
+    const fallback = document.getElementById('map-fallback');
     if (!iframe || !fallback) return;
-    
-    var mapLoaded = false;
-    
+
+    let mapLoaded = false;
+
     
     iframe.style.display = 'block';
     fallback.style.display = 'none';
-    
+
+    iframe.onload = function () {
+      mapLoaded = true;
+      console.log("✅ Google Map iframe loaded.");
+    };
+
+    iframe.onerror = function () {
+      showFallback();
+    };
+
     function showFallback() {
+      console.warn("❌ 地图无法加载，切换备用图像");
       iframe.style.display = 'none';
       fallback.style.display = 'flex';
     }
+
     
-    
-    iframe.onerror = showFallback;
-    
-    
-    iframe.onload = function() {
-      mapLoaded = true;
-      
-      
-      
-    };
-    
-    
-    setTimeout(function() {
+    setTimeout(function () {
       if (!mapLoaded) {
         showFallback();
       }
-    }, 3000);
+    }, 5000); 
   }
 
-  
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMap);
   } else {
     initMap();
   }
-
-  
-  window.addEventListener('load', function() {
-    setTimeout(initMap, 500);
-  });
+})();
 </script>
-
-
-
-
 
 
 
@@ -854,217 +1255,157 @@
     </a>
     
     
-  
-<footer class="bg-gray-900 text-white py-12">
-  <div class="container mx-auto px-4">
-    <div class="grid md:grid-cols-3 gap-8">
-      
-      <div>
-        <a href="http://localhost:1313/" class="inline-block mb-4">
-          <img src="/images/logo.png" alt="Full Network Advertising - Comprehensive Digital Marketing Solutions" class="h-10 bg-white p-1 rounded">
-        </a>
-        <p class="text-gray-400 mb-6" lang="zh">Full Network Advertising 是总部位于Klang的马来西亚领先数字营销机构，专业服务吉隆坡、雪兰莪及全马来西亚地区。我们深耕本地市场，为品牌提供创新、高效的数字营销解决方案。</p>
-        <p class="text-gray-400 mb-6" lang="en">Full Network Advertising is a leading digital marketing agency in Malaysia, headquartered in Klang and professionally serving Kuala Lumpur, Selangor, and nationwide. We specialize in local market expertise, providing innovative and effective digital marketing solutions for brands.</p>
-        <p class="text-gray-400 mb-6" lang="ms">Full Network Advertising adalah agensi pemasaran digital terkemuka di Malaysia yang beribu pejabat di Klang, melayani Kuala Lumpur, Selangor dan seluruh Malaysia secara profesional. Kami pakar dalam pasaran tempatan, menyediakan penyelesaian pemasaran digital yang inovatif dan berkesan untuk jenama.</p>
-        <div class="flex space-x-4">
-          <a href="https://www.facebook.com/Fullnetwork28/" target="_blank" class="text-gray-400 hover:text-white transition">
-            <i class="ri-facebook-fill text-xl"></i>
-          </a>
-          <a href="https://www.instagram.com/fullnetwork28/" target="_blank" class="text-gray-400 hover:text-white transition">
-            <i class="ri-instagram-fill text-xl"></i>
-          </a>
-          <a href="https://wa.me/60146632896" target="_blank" class="text-gray-400 hover:text-white transition">
-            <i class="ri-whatsapp-fill text-xl"></i>
-          </a>
-          <a href="https://t.me/fullnetwork28" target="_blank" class="text-gray-400 hover:text-white transition">
-            <i class="ri-telegram-fill text-xl"></i>
-          </a>
+    
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div>
+                    <a href="http://localhost:1313/" class="inline-block mb-4">
+                        <img src="http://localhost:1313/images/logo.png" alt="Full Network Advertising - Comprehensive Digital Marketing Solutions" class="h-10 bg-white p-1 rounded">
+                    </a>
+                    <p class="text-gray-400 mb-6" lang="zh">Full Network Advertising 是总部位于Klang的马来西亚领先数字营销机构，专业服务吉隆坡、雪兰莪及全马来西亚地区。我们深耕本地市场，为品牌提供创新、高效的数字营销解决方案。</p>
+                    <p class="text-gray-400 mb-6" lang="en">Full Network Advertising is a leading digital marketing agency in Malaysia, headquartered in Klang and professionally serving Kuala Lumpur, Selangor, and nationwide. We specialize in local market expertise, providing innovative and effective digital marketing solutions for brands.</p>
+                    <p class="text-gray-400 mb-6" lang="ms">Full Network Advertising adalah agensi pemasaran digital terkemuka di Malaysia yang beribu pejabat di Klang, melayani Kuala Lumpur, Selangor dan seluruh Malaysia secara profesional. Kami pakar dalam pasaran tempatan, menyediakan penyelesaian pemasaran digital yang inovatif dan berkesan untuk jenama.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/Fullnetwork28/" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-facebook-fill text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/fullnetwork28/" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-instagram-fill text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/60146632896" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-whatsapp-fill text-xl"></i>
+                        </a>
+                        <a href="https://t.me/fullnetwork28" target="_blank" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-telegram-fill text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="http://localhost:1313/" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">83-2, Jalan Mahogani 5/KS7, Bandar Botanic, 41200, Klang, Selangor, Malaysia</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ri-mail-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">fullnetwork63@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ri-phone-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">+60 14-663 2896</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Full Network Advertising - Comprehensive Digital Marketing Solutions. All Rights Reserved</p>
+            </div>
         </div>
-      </div>
-      
-      
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-        <ul class="space-y-2">
-          <li><a href="http://localhost:1313/" class="text-gray-400 hover:text-white transition">Home</a></li>
-          <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
-          <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
-          <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
-        </ul>
-      </div>
-      
-      
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
-        <ul class="space-y-2">
-          <li class="flex items-start">
-            <i class="ri-map-pin-line mr-2 mt-1"></i>
-            <span class="text-gray-400">83-2, Jalan Mahogani 5/KS7, Bandar Botanic, 41200, Klang, Selangor, Malaysia</span>
-          </li>
-          <li class="flex items-start">
-            <i class="ri-mail-line mr-2 mt-1"></i>
-            <span class="text-gray-400">fullnetwork63@gmail.com</span>
-          </li>
-          <li class="flex items-start">
-            <i class="ri-phone-line mr-2 mt-1"></i>
-            <span class="text-gray-400">+60 14-663 2896</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-      <p>&copy; 2025 Full Network Advertising - Comprehensive Digital Marketing Solutions. All Rights Reserved</p>
-    </div>
-  </div>
-</footer>
-
-
-
-
-
-
-
-
+    </footer>
     
     
-  <script>
-
-function changeLanguage(lang) {
-  
-  const currentUrl = window.location.href;
-  
-  const baseUrl = 'http:\/\/localhost:1313\/';
-  let newUrl;
-  
-  if (lang === 'en') {
-    return; 
-  }
-  
-  if (lang === 'en') {
-    newUrl = baseUrl; 
-  } else {
-    newUrl = baseUrl + lang + '/';
-  }
-  
-  
-  window.location.href = newUrl;
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  
-  const languageButton = document.getElementById('language-button');
-  const languageDropdown = document.getElementById('language-dropdown');
-  
-  
-  if (languageButton && languageDropdown) {
-    languageButton.addEventListener('click', function() {
-      languageDropdown.classList.toggle('hidden');
-    });
     
     
-    document.addEventListener('click', function(event) {
-      if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
-        languageDropdown.classList.add('hidden');
-      }
-    });
-  }
-  
-  
-  const navLinks = document.querySelectorAll('nav a');
-  
-  
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      
-      
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        
-        
-        if (href === '#') {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-          return;
-        }
-        
-        
-        const targetId = href.replace('#', '');
-        
-        
-        const targetSection = document.getElementById(targetId);
-        
-        
-        if (targetSection) {
-          targetSection.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      }
-    });
-  });
-});
-
-
-(function() {
-  
-  function animateCounter(counter, target, duration) {
-    let startTime = null;
-    const isDecimal = target % 1 !== 0;
+    <script>
     
-    function updateCounter(timestamp) {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const currentValue = progress * target;
+    function changeLanguage(lang) {
       
-      counter.textContent = isDecimal 
-        ? currentValue.toFixed(1) 
-        : Math.floor(currentValue);
+      localStorage.setItem('preferredLanguage', lang);
       
-      if (progress < 1) {
-        requestAnimationFrame(updateCounter);
+      
+      const currentUrl = window.location.href;
+      const currentPath = window.location.pathname;
+      
+      
+      const langRegex = /^\/(zh|en|ms)\//;
+      let newPath;
+      
+      if (langRegex.test(currentPath)) {
+        
+        newPath = currentPath.replace(langRegex, '/' + lang + '/');
       } else {
-        counter.textContent = isDecimal ? target.toFixed(1) : target;
+        
+        newPath = '/' + lang + '/';
       }
+      
+      
+      const newUrl = window.location.protocol + '//' + window.location.host + newPath + window.location.search;
+      
+      
+      window.location.href = newUrl;
+      
+      console.log('Language changed to:', lang, 'New URL:', newUrl);
     }
+
     
-    requestAnimationFrame(updateCounter);
-  }
-  
-  
-  function initCounters() {
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-      const target = parseFloat(counter.getAttribute('data-target'));
-      if (!isNaN(target)) {
-        animateCounter(counter, target, 2000);
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      const languageButton = document.getElementById('language-button');
+      const languageDropdown = document.getElementById('language-dropdown');
+      
+      
+      if (languageButton && languageDropdown) {
+        languageButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          languageDropdown.classList.toggle('hidden');
+        });
+        
+        
+        document.addEventListener('click', function(event) {
+          if (languageButton && languageDropdown && !languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+            languageDropdown.classList.add('hidden');
+          }
+        });
+      }
+      
+      
+      if (window.location.hostname === 'localhost') {
+        const savedLang = localStorage.getItem('preferredLanguage');
+        if (savedLang) {
+          
+          const body = document.getElementById('main-body');
+          if (body) {
+            body.classList.remove('lang-zh', 'lang-en', 'lang-ms');
+            body.classList.add(`lang-${savedLang}`);
+          }
+        }
       }
     });
-  }
-  
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCounters);
-  } else {
-    initCounters();
-  }
-  
-  
-  window.addEventListener('scroll', function() {
-    initCounters();
-  });
-})();
-</script>
-
-
-
-
-
-
+    </script>
+    
+    <script>
+      
+      window.addEventListener('load', function() {
+        
+        setTimeout(function() {
+          if (window.performance) {
+            const perfData = window.performance.timing;
+            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+            console.log('Page load time:', pageLoadTime + 'ms');
+            
+            
+          }
+        }, 0);
+      });
+    </script>
+    
 </body>
 </html>
 
@@ -1142,13 +1483,6 @@ document.addEventListener('DOMContentLoaded', function() {
   ]
 }
 </script>
-
-
-
-
-
-
-
 
 
 

@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="theme-color" content="#ff4d79">
 
-<!-- 网站图标 - 使用 absURL -->
+<!-- 网站图标 -->
 <link rel="apple-touch-icon" href="{{ "images/apple-touch-icon.png" | absURL }}">
 
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
@@ -16,9 +16,13 @@
 <!-- 规范链接 -->
 <link rel="canonical" href="{{ .Permalink }}">
 
-<!-- 预加载关键资源 - 使用 absURL -->
+<!-- 预加载关键资源 -->
 <link rel="preload" href="{{ "images/logo.png" | absURL }}" as="image">
-<link rel="preload" href="{{ "images/hero-bg.png" | absURL }}" as="image">
+<link rel="preload" href="{{ "images/hero-bg.jpg" | absURL }}" as="image">
+
+<!-- 预加载关键资源 -->
+<link rel="preload" href="{{ "images/logo.png" | absURL }}" as="image">
+<link rel="preload" href="{{ "images/hero-bg.jpg" | absURL }}" as="image">
 
 
 
@@ -102,7 +106,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 </style>
-
 
 
 
