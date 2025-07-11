@@ -1,4 +1,4 @@
-{{ $img := .image }}
+{{ $img := .image | absURL }}
 {{ $alt := .alt | default "Image" }}
 {{ $class := .class | default "" }}
 {{ $widthAttr := .width | default "auto" }}
@@ -13,7 +13,8 @@
   height="{{ $heightAttr }}" 
   {{ if $lazy }}loading="lazy"{{ end }}
   {{ if .webp }}
-    srcset="{{ .webp }} 1x"
+    srcset="{{ .webp | absURL }} 1x"
     onerror="this.onerror=null; this.srcset=''; this.src='{{ $img }}';"
   {{ end }}
 >
+

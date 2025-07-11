@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#ff4d79">
     
-    <!-- 添加 Apple Touch 图标 -->
+    <!-- 添加 Apple Touch 图标 - 使用 absURL -->
     <link rel="apple-touch-icon" href="{{ "images/apple-touch-icon.png" | absURL }}">
     
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
@@ -19,10 +19,10 @@
     {{ end }}
     <link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
     
-    <!-- 预加载关键资源 -->
+    <!-- 预加载关键字体 - 使用 absURL -->
     <link rel="preload" href="{{ "fonts/your-main-font.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
     
-    <!-- 延迟加载非关键 JavaScript -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com/3.4.16" defer></script>
     
     <!-- 内联关键 CSS -->
@@ -354,7 +354,7 @@
     <!-- 导航栏 -->
     <header class="bg-white shadow-sm fixed w-full z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="flex items-center">
+            <a href="{{ .Site.BaseURL }}" class="flex items-center">
                 <img src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }} Logo" class="h-12">
             </a>
             <nav class="hidden md:flex space-x-8">
@@ -697,6 +697,13 @@
   ]
 }
 </script>
+
+
+
+
+
+
+
 
 
 
