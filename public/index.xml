@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Full Network Advertising - 全方位网络营销解决方案</title>
-    <link>https://www.fullnetworkads.com/</link>
+    <link>http://localhost:54296/</link>
     <description>Recent content on Full Network Advertising - 全方位网络营销解决方案</description>
     <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="https://www.fullnetworkads.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:54296/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
